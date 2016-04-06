@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+    <script src="js/jquery-1.6.2.min.js" type="text/javascript"></script> 
+	<script src="js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+ 	<title>Search By Street: Apartment Finder</title>
+	<script>
+	$(document).ready(function() {
+		$( "#street_input" ).change(function() {
+		
+			$.ajax({
+				url: 'street_finder.php', 
+				data: {searchStreet: $( "#street_input" ).val()},
+				success: function(data){
+					$('#street_result').html(data);	
+				
+				}
+			});
+		});
+		
+	});
+	</script>
+</head>
+<body>
+	<div class="dark_filter">
+	<div class="background">
+	<h3>Search Address by Street</h3>	
+           
+	<input class="xlarge" id="street_input" type="search" size="30" placeholder="Street Contains"/>
+
+	<div id="street_result">Search Result</div>
+	</div>
+	</div>
+
+
+</body>
+</html>

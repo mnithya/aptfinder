@@ -1,0 +1,76 @@
+body {
+     background: url("images/city_lights2.jpg");
+     background-size: cover;
+     background-repeat: repeat-y;
+     font-family: "Trebuchet MS", Helvetica, sans-serif;
+     color: #d8d8d8;
+
+}
+
+input[type=submit] {
+	padding: 5px 15px;
+	background-color: #9966CC;
+	font-size: 16px;
+	text-align: center;
+	text-decoration: none;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color: white;
+	cursor: pointer;
+	border: none;
+}
+
+input:hover[type=submit] {
+	background-color: #9999CC;
+}
+
+button {
+	padding: 5px 15px;
+	background-color: #9966CC;
+	font-size: 16px;
+	text-align: center;
+	text-decoration: none;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color: white;
+	cursor: pointer;
+	border: none;
+}
+
+button:hover {
+	background-color: #9999CC;
+}
+
+
+h2 {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	letter-spacing: 3px;
+	word-spacing: 5px;
+}
+
+.background {
+	
+	background: rgb(153, 102, 153);
+	background: rgba(153, 102, 153, 0.4);
+
+}
+
+.dark_filter
+{
+	background: rgb(30, 30, 30);
+	background: rgba(30, 30, 30, 0.6);
+}
+
+table
+{
+	border: 1px solid white;
+	width: 100%;
+}
+
+td, th {
+	border-style: none;
+	height: 50 px;
+	text-align: center;
+}
+
+
+
+

@@ -1,6 +1,6 @@
 # aptfinder
-Databases Project
-Yuri Bang
-Kate Highnam
-Nithya Murali
-Nicole Nguyen
+Databases Project\n
+Yuri Bang\n
+Kate Highnam\n
+Nithya Murali\n
+Nicole Nguyen\n

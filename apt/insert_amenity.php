@@ -53,6 +53,6 @@ else
 $stmt->close();
 $db->close();
 echo "</div></div><br/>";
-echo "<a href=\"http://plato.cs.virginia.edu/~nbn6sn/apt/update_amenity.php\"><button>Insert More Building-Amenity Pairs</button></a>";
+echo "<a href=\"./update_amenity.php\"><button>Insert More Building-Amenity Pairs</button></a>";
 echo "</body></html>";
 ?>

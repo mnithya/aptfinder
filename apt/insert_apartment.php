@@ -32,7 +32,7 @@ echo "<html>
 
 
 
-if(isset($_POST['apt_beds']) && (int)$_POST['apt_beds'] > 1)
+if(isset($_POST['apt_beds']) && (int)$_POST['apt_beds'] > 0)
 {
 	$beds = $_POST['apt_beds'];
 }
@@ -41,7 +41,7 @@ else
 $error = True;
 }
 
-if(isset($_POST['apt_baths']) && (int)$_POST['apt_baths'] > 1)
+if(isset($_POST['apt_baths']) && (int)$_POST['apt_baths'] > 0)
 {
 	$beds = $_POST['apt_baths'];
 }
@@ -65,7 +65,7 @@ else
 	$error = True;
 }
 
-if(!empty($_POST['apt_num']) && (int)$_POST['apt_num'] > 1)
+if(!empty($_POST['apt_num']) && (int)$_POST['apt_num'] > 0)
 {
 	$apt_num = $_POST['apt_num'];
 }
@@ -97,10 +97,10 @@ if(!$error && $stmt->prepare("INSERT INTO Apartment(building_id, apt_num, availa
 	}
 	else
 	{
-		echo "Error: You were not able to insert into the database, Sorry!";
+		echo "Error: You were not able to insert into the database, unfortunately!";
 	}
 	$db->close();
 echo "</div></div><br/>";
-echo "<a href=\"http://plato.cs.virginia.edu/~nbn6sn/apt/update_apartment.php\"><button>Insert More Apartments</button></a>";
+echo "<a href=\"./update_apartment.php\"><button>Insert More Apartments</button></a>";
 echo "</body></html>";
 ?>

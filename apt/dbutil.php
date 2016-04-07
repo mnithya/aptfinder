@@ -1,7 +1,7 @@
 <?php
 class DbUtil{
-	public static $loginUser = "cs4750kwh5ye"; 
-	public static $loginPass = "apt2016";
+	public static $loginUser = "cs4750kwh5yea"; 
+	public static $loginPass = "spring2016";
 	public static $host = "stardock.cs.virginia.edu"; // DB Host
 	public static $schema = "cs4750kwh5ye"; // DB Schema
 	

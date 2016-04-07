@@ -59,6 +59,6 @@
 	}
 	$db->close();
 	echo "</div></div><br/>";
-	echo "<a href=\"http://plato.cs.virginia.edu/~nbn6sn/apt/update_building.php\"><button>Insert More Buildings</button></a>";
+	echo "<a href=\"./update_building.php\"><button>Insert More Buildings</button></a>";
 	echo "</body></head>";
 ?>

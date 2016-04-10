@@ -27,7 +27,7 @@ ini_set('display_errors', 1);
 	//need to make a 'fatal error' html page or some sort of javascript alert
 	
 	$stmt = $db->stmt_init();
-	if($stmt->prepare("SELECT column_name FROM information_schema.columns WHERE table_schema= 'cs4750kwh5ye' AND table_name='Amenity'") or die("That is really unfortunate"))
+	if($stmt->prepare("SELECT column_name FROM information_schema.columns WHERE table_schema= 'cs4750kwh5ye' AND table_name='". $_POST['export'] . "'") or die("That is really unfortunate"))
 	{
 		$stmt->execute();
 		$stmt->bind_result($col);
@@ -40,23 +40,23 @@ ini_set('display_errors', 1);
 	}
 
 	$output_text = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n";
-	$output_text .= "<list>\r\n";
+	$output_text .= "<cs4750kwh5ye.".$_POST['export'].">\r\n";
 	//$_POST['export'] TODO
 
-	$query = "SELECT * FROM Amenity";
+	$query = "SELECT * FROM ". $_POST['export'];
 	$result = mysqli_query($con, $query);
 	
 	while($row = mysqli_fetch_array($result)) {
-		$output_text .= "\t<element id=\"". $row[$columns[0]] ."\">\r\n";
+		$output_text .= "\t<".$_POST['export'] ." ". $columns[0] ."=\"". $row[$columns[0]] ."\">\r\n";
  		for( $i = 1; $i < count($columns); $i++)
 		{	
 		$output_text .= "\t\t<". $columns[$i]. ">".  $row[$columns[$i]] . "</". $columns[$i]. ">\r\n";	
 		}
-		$output_text .= "\t</element>\r\n";
+		$output_text .= "\t</".$_POST['export'].">\r\n";
  	}
 	
 
-	$output_text .= "</list>\r\n";
+	$output_text .= "</cs4750kwh5ye.". $_POST['export'] .">\r\n";
 	$output_text .= "xml file generated on ". $day ." at ". $time;
 	$db->close();
 	mysqli_close($con);

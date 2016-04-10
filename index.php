@@ -45,32 +45,29 @@
 					maxrent: $("#maxrent").val()
 				},
 				success: function(data){
-					$('#locationRentResult').html(data);	
+					$('#searchResult').html(data);	
 				
 				},
 				//error:function(exception){alert('Exeption:'+exception);}
 				error: function (data) { console.log(data); }
 			});
 		});
-		window.location.replace("index.php");
 	});
 	</script>
 
 </head>
 
-<!--
-<body> -->
+<body>
 	<?php
-	/*require "apt/dbutil.php";
+	require "apt/dbutil.php";
     $db = DbUtil::loginConnection();
 	date_default_timezone_set('America/New_York');
-	$timestamp = time(); */
+	$timestamp = time();
 	?>
-	<!--
-    <!- - Navigation - ->
+    <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
-            <!- - Brand and toggle get grouped for better mobile display - ->
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -80,7 +77,7 @@
                 </button>
                 <a class="navbar-brand topnav" href="#">Home</a>
             </div>
-            <!- - Collect the nav links, forms, and other content for toggling - ->
+            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -94,13 +91,13 @@
                     </li>
                 </ul>
             </div>
-            <!- - /.navbar-collapse - ->
+            <!-- /.navbar-collapse -->
         </div>
-        <!- - /.container - ->
+        <!-- /.container -->
     </nav>
 
 
-    <! -- Header - ->
+    <!-- Header -->
     <a name="about"></a>
     <div class="intro-header">
         <div class="container">
@@ -165,12 +162,12 @@
             </div>
 
         </div>
-        <!- - /.container - ->
+        <!-- /.container -->
 
     </div>
-    <!- - /.intro-header - ->
+    <!-- /.intro-header -->
 	
-    <!- - Page Content  - ->
+    <!-- Page Content -->
 
 		<div class="container" id="advancedSearch">
 			<div class="row">
@@ -183,129 +180,100 @@
   						  </h4>
 						  <li>
 						  <label>State</label>
-						  <select class="form-control bfh-states" data-country="US">
+						  <select id="select-state" class="form-control bfh-states" data-country="US">
 							<option data-hidden="true">Select One</option>
-						    <option>Populate options based on DB data</option>
+							<?php
+							$stmt = $db->stmt_init();
+								if($stmt->prepare("select distinct state from Address order by state") or die("Failed to retrieve amenities")) {
+										$stmt->execute();
+										$stmt->bind_result($state);
+										while($stmt->fetch()) {
+												echo "<option value='$state'>$state</option>";
+										}
+										$stmt->close();
+								}
+							?>
 						  </select>
 						  </li>
 						  <li>
 						  <label>City</label>
-						  <select class="form-control bfh-states" data-country="US">
+						  <select id="select-city" class="form-control bfh-states" data-country="US">
 							<option data-hidden="true">Select One</option>
-						    <option>Populate options based on DB data</option>
+						    <?php
+							$stmt = $db->stmt_init();
+								if($stmt->prepare("select distinct city from Address order by city") or die("Failed to retrieve amenities")) {
+										$stmt->execute();
+										$stmt->bind_result($city);
+										while($stmt->fetch()) {
+												echo "<option value='$city'>$city</option>";
+										}
+										$stmt->close();
+								}
+							?>
 						  </select>
 						  </li>
 						  <li>
 							  <label>Bedrooms</label>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">1</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">2</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">3</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">4+</label>
+							  <div id="bedroom-select">
+								  <div class="checkbox">
+								  <label><input type="checkbox" name="beds_list[]" value="1">1</label>
+								  </div>
+								  <div class="checkbox">
+								  <label><input type="checkbox" name="beds_list[]" value="2">2</label>
+								  </div>
+								  <div class="checkbox">
+								  <label><input type="checkbox" name="beds_list[]" value="3">3</label>
+								  </div>
+								  <div class="checkbox">
+								  <label><input type="checkbox" name="beds_list[]" value="4">4+</label>
+								  </div>
 							  </div>
 						  </li>
 						  <li>
 						      <label>Baths</label>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">1</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">2</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">3+</label>
+							  <div id="bathroom-select">
+								  <div class="checkbox">
+								  <label><input type="checkbox" name="baths_list[]" value="1">1</label>
+								  </div>
+								  <div class="checkbox">
+								  <label><input type="checkbox" name="baths_list[]" value="2">2</label>
+								  </div>
+								  <div class="checkbox">
+								  <label><input type="checkbox" name="baths_list[]" value="3">3+</label>
+								  </div>
 							  </div>
 						  </li>
 						  <li>
 							  <label>Rent</label>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Less than $300</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">$300 - $500</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">$500 - $800</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">$800 - $1200</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">$1200 - $1500</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">$1500 - $2000</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">$2000 - $2500</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">$2500 - $3000</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">$3000 - $3500</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">$3500+</label>
-							  </div>
+							  <form class="form-inline" role="form">
+								  <div class="form-group">
+									<label for="minrent_input">$</label>
+									<input type="number" class="rent-filter" id="minrent_input">
+								  </div>
+								  <div class="form-group">
+									<label for="maxrent_input" style="margin-left: 2px;">  to $</label>
+									<input type="number" class="rent-filter" id="maxrent_input">
+								  </div>
+								  <button type="submit" class="btn btn-default btn-rent" id="rent_range">Go</button>
+								</form>
 						  </li>
-						  <li>
+						  <li style="margin-top: 10px;">
 						      <label>Apartment Amenities</label>
-							  
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Pool</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Fitness Center</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Water View</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">In Apartment Washer-Dryer</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Parking</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Balcony</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Air Conditioning</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Dishwasher</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Courtyard</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Common Area Kitchen</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Printing Center</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Common Area WiFi</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Rooftop Deck</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Guest Suites</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">Game Room</label>
-							  </div>
-							  <div class="checkbox">
-							  <label><input type="checkbox" value="">City View</label>
-							  </div>
+							  <div id="amenities">
+							  <?php
+								$stmt = $db->stmt_init();
+								if($stmt->prepare("select amenity_id, name from Amenity") or die("Failed to retrieve amenities")) {
+										$stmt->execute();
+										$stmt->bind_result($amenity_id, $name);
+										while($stmt->fetch()) {
+												echo "<div class='checkbox'>";
+												echo "<label><input type=\"checkbox\" name=\"amenity_input[]\" value=$amenity_id>";
+												echo "$name</label></div>";
+										}
+										$stmt->close();
+								}
+							  ?>
+							</div>
 						  </li>
 						</ul>
 					</div>
@@ -320,9 +288,8 @@
 							</div>
 					<h2 id="sec0">Results</h2>
 				
-						<div id="locationRentResult">Search Result</div>
+						<div id="searchResult"></div>
 					
-
 				</div> 
 			</div>
 		</div>
@@ -347,10 +314,10 @@
             </div>
 
         </div>
-        <!- - /.container - ->
+        <!-- /.container -->
 
     </div>
-    <!- - /.content-section-b - ->
+    <!-- /.content-section-b -->
 
 	<a  name="contact"></a>
     <div class="banner">
@@ -382,12 +349,12 @@
             </div>
 
         </div>
-        <!- - /.container - ->
+        <!-- /.container -->
 
     </div>
-    <!- - /.banner - ->
+    <!-- /.banner -->
 
-    <!- - Footer - ->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
@@ -415,18 +382,11 @@
         </div>
     </footer>
 
-    <!- - jQuery - ->
+    <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
-    <!- - Bootstrap Core JavaScript - ->
+    <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
-</body>
--->
-
-<body>
-
-
 
 </body>
 

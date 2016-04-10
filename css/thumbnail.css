@@ -71,3 +71,12 @@
 	display: block;
 	clear: both;
 }
+
+.rent-filter {
+	width: 65px;
+}
+
+.btn-rent {
+	padding: 3px 8px;
+	margin-left: 5px;
+}

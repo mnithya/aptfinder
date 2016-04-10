@@ -8,36 +8,58 @@ ini_set('display_errors', 1);
 	$day = date("Y-m-d", $timestamp);
 	$time = date("H:i:s", $timestamp);
 
+	require_once('./library.php');
+ 	$con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE); 
+ 	// Check connection
+ 	if (mysqli_connect_errno()) {
+ 		echo("Can't connect to MySQL Server. Error code: " .
+		mysqli_connect_error());
+ 		return null;
+ 	}
+
 	$stmt = $db->stmt_init();
+	$columns = array();
 
 	$output_file = "exported_table.xml";
-	//http://stackoverflow.com/questions/13760860/how-to-create-xml-files-via-php-and-mysql
+	// http://stackoverflow.com/questions/13760860/how-to-create-xml-files-via-php-and-mysql
+	// http://stackoverflow.com/questions/5648420/get-all-columns-from-all-mysql-tables
 	$f_handle = fopen($output_file, 'w+') or die("Could not make file");
 	//need to make a 'fatal error' html page or some sort of javascript alert
+	
+	$stmt = $db->stmt_init();
+	if($stmt->prepare("SELECT column_name FROM information_schema.columns WHERE table_schema= 'cs4750kwh5ye' AND table_name='Amenity'") or die("That is really unfortunate"))
+	{
+		$stmt->execute();
+		$stmt->bind_result($col);
+		while($stmt->fetch())
+		{
+		array_push($columns, $col);
+		}
+	$stmt->close();		
 
+	}
 
 	$output_text = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n";
 	$output_text .= "<list>\r\n";
 	//$_POST['export'] TODO
 
-	if($stmt->prepare("SELECT user_id, first_name, last_name, username, isAdmin FROM User") or die("That's unfortunate"))
-	{
-			$stmt->execute();
-			$stmt->bind_result($id, $fname, $lname, $uname, $admin);
-			while($stmt->fetch()) {
-				$output_text .= "\t<user id=\"". $id ."\">\r\n";
-				$output_text .= "\t\t<first_name>". $fname . "</first_name>\r\n";
-				$output_text .= "\t\t<last_name>" . $lname . "</last_name>\r\n";
-				$output_text .= "\t\t<username>" . $uname . "</username>\r\n";
-				$output_text .= "\t\t<isAdmin>" . $admin . "</isAdmin>\r\n";
-				$output_text .= "\t</user>\r\n";
+	$query = "SELECT * FROM Amenity";
+	$result = mysqli_query($con, $query);
+	
+	while($row = mysqli_fetch_array($result)) {
+		$output_text .= "\t<element id=\"". $row[$columns[0]] ."\">\r\n";
+ 		for( $i = 1; $i < count($columns); $i++)
+		{	
+		$output_text .= "\t\t<". $columns[$i]. ">".  $row[$columns[$i]] . "</". $columns[$i]. ">\r\n";	
 		}
-	    $stmt->close();
-	}
+		$output_text .= "\t</element>\r\n";
+ 	}
+	
 
 	$output_text .= "</list>\r\n";
 	$output_text .= "xml file generated on ". $day ." at ". $time;
 	$db->close();
+	mysqli_close($con);
 
 	fwrite($f_handle, $output_text);
 	fclose($f_handle);

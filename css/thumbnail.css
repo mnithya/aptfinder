@@ -1,0 +1,73 @@
+.thumbnail.right-caption > img {
+    float: right;
+    margin-right: 9px;
+}
+
+.thumbnail.right-caption {
+    float: right;
+}
+
+.thumbnail.right-caption > .caption {
+    padding: 4px;
+}
+
+.post-container {
+	padding-right: 5px;
+    margin: 20px 20px 0 0;  
+    border: 1px solid #CCCACA;
+    overflow: auto;
+}
+
+.post-thumb {
+    float: left;
+}
+.post-thumb img {
+    display: block;
+}
+.post-content-container {
+	padding: 2px;
+}
+
+.post-content {
+	padding-left: 70px;
+    margin-left: 245px;
+}
+.post-title {
+    font-weight: bold;
+    font-size: 200%;
+}
+
+.post-heading {
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	color: black;
+}
+
+.rating  {
+	margin-top: 13px;
+	padding-left: 5px;
+	float: left;
+}
+
+.description {
+	margin-top: -15px;
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.post-rent {
+	float: right; 
+	margin-top: 10px;
+	font-size: 20px;
+}
+
+.post-location {
+	font-size: 17px;
+	color: #868686;
+}
+
+.clearBoth {
+	display: block;
+	clear: both;
+}

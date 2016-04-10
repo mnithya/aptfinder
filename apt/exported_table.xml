@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<list>
+	<user id="1">
+		<first_name>Kate</first_name>
+		<last_name>Highnam</last_name>
+		<username>kate</username>
+		<isAdmin>0</isAdmin>
+	</user>
+	<user id="2">
+		<first_name>Nithya</first_name>
+		<last_name>Murali</last_name>
+		<username>nithya</username>
+		<isAdmin>0</isAdmin>
+	</user>
+	<user id="3">
+		<first_name>Nicole</first_name>
+		<last_name>Nguyen</last_name>
+		<username>a</username>
+		<isAdmin>1</isAdmin>
+	</user>
+	<user id="4">
+		<first_name>Yuri</first_name>
+		<last_name>Bang</last_name>
+		<username>yuri</username>
+		<isAdmin>0</isAdmin>
+	</user>
+</list>
+xml file generated on 2016-04-10 at 00:15:13

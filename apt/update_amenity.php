@@ -20,7 +20,7 @@ $timestamp = time();
 	<body>
 
 	<div class = \"intro-header\">
-			<h1>Add an <i>amenity</i> to a <i>building</i>:</h1>
+			<h1>Add an <i>amenity</i> to a <i>building</i></h1>
 			<h3></h3>
 			<hr class = \"intro-divider\">
 		</div>

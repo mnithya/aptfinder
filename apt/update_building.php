@@ -98,7 +98,10 @@ $timestamp = time();
 
 	<div class='container'>
 	<div class='row' style='text-align:center;'>
-	<input type=\"Submit\" value=\"Insert your Building\" >
+	<input type=\"Submit\" value=\"Insert your Building\" 
+	style=\"text-align: center; color: #333; background-color: #fff; border-color: #ccc; 
+		text-transform: uppercase; font-size: 14px; font-weight: 400; letter-spacing: 2px; 
+		padding: 10px 16px; font-size: 14px; line-height: 1.3333333; border-radius: 6px;\">
 	</div>
 	</div>
 		</form></body></html>";

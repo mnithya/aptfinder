@@ -15,12 +15,6 @@
 	$addr_id = NULL;
 	$cmpy = NULL;
 	
-	echo "<html>
-	<head><link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"></head>
-	<body>
-	<div class=\"dark_filter\">
-	<div class=\"background\">";
-
 
 	//iterate through the possible attributes and see if we need to insert none into them
 	//print_r($_POST);
@@ -58,7 +52,5 @@
 			echo $_POST['name'] . " added on $day at $time";
 	}
 	$db->close();
-	echo "</div></div><br/>";
-	echo "<a href=\"./update_building.php\"><button>Insert More Buildings</button></a>";
-	echo "</body></head>";
+	header('Location: ./index.html');
 ?>

@@ -24,13 +24,6 @@ $bldg_id = NULL;
 $apt_num = NULL;
 $error = False;
 
-echo "<html>
-	<head><link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"></head>
-	<body>
-	<div class=\"dark_filter\">
-	<div class=\"background\">";
-
-
 
 if(isset($_POST['apt_beds']) && (int)$_POST['apt_beds'] > 0)
 {
@@ -43,7 +36,7 @@ $error = True;
 
 if(isset($_POST['apt_baths']) && (int)$_POST['apt_baths'] > 0)
 {
-	$beds = $_POST['apt_baths'];
+	$baths = $_POST['apt_baths'];
 }
 else 
 {
@@ -77,7 +70,6 @@ else
 if(!empty($_POST['apt_rent']) && (float)$_POST['apt_rent'] > (float)0)
 {
 	$rent = $_POST['apt_rent'];
-	//echo $rent;
 }
 else
 {
@@ -93,14 +85,13 @@ if(!$error && $stmt->prepare("INSERT INTO Apartment(building_id, apt_num, availa
 			$stmt->bind_param(ssssss, $bldg_id, $apt_num, $availability, $baths, $beds, $rent);
 			$stmt->execute();
 			$stmt->close();
-			echo $_POST['apt_num'] . " added on $day at $time";
+			//echo $_POST['apt_num'] . " added on $day at $time";
 	}
 	else
 	{
-		echo "Error: You were not able to insert into the database, unfortunately!";
+		//echo "Error: You were not able to insert into the database, unfortunately!";
 	}
 	$db->close();
-echo "</div></div><br/>";
-echo "<a href=\"./update_apartment.php\"><button>Insert More Apartments</button></a>";
-echo "</body></html>";
+header('Location: ./index.html');
+
 ?>

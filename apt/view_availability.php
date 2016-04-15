@@ -38,7 +38,7 @@ $timestamp = time();
 			if($stmt->prepare("SELECT * FROM Apt_Availability") or die("Failed to retrieve buildings")) {
 			$stmt->execute();
 			$stmt->bind_result($bldg_id, $bldg_name, $apt_totals, $vacancy);
-				echo "<table><th><h4 class='text-muted'>Building Name</h4></th><th><h4 class='text-muted'>Total Apartments</h4></th><th><h4 class='text-muted'>Available Apartments</h4></th>";
+				echo "<table><th>Building Name</th><th>Total Apartments</th><th>Available Apartments</th>";
 				while($stmt->fetch()) {
 					echo "<tr><td>$bldg_name</td><td>$apt_totals</td><td>$vacancy</td></tr>";
 				}	
@@ -47,6 +47,14 @@ $timestamp = time();
 		}
 	
 	echo "</div></div>
+	</div>
+	</div>
+	<br/>
+	<br/>";
+
+	echo "<div class='container'>
+	<div class='row' style='text-align:center;'>
+		<a href=\"./index.html\" class=\"btn btn-default btn-lg\"><span class=\"network-name\">Homepage</span></a>
 	</div>
 	</div>";
 

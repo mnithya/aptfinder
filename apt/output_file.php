@@ -12,9 +12,7 @@ ini_set('display_errors', 1);
  	$con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE); 
  	// Check connection
  	if (mysqli_connect_errno()) {
- 		echo("Can't connect to MySQL Server. Error code: " .
-		mysqli_connect_error());
- 		return null;
+ 		header('Location: ./error.html');
  	}
 
 	$stmt = $db->stmt_init();

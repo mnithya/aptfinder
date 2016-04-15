@@ -18,6 +18,18 @@
 	{
 		header('Location: ./view_availability.php');
 	}
+
+	$query = "DELETE FROM Rents";
+	$result = mysqli_query($con, $query);
 	
+	if(mysqli_errno($con))
+	{
+		header('Location: ./error.html');
+	}
+	else
+	{
+		header('Location: ./view_availability.php');
+	}
+
 	mysqli_close($con);
 ?>

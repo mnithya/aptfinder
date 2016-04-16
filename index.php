@@ -87,7 +87,7 @@
                         <a href="#services">Add a Listing</a>
                     </li>
                     <li>
-                        <a href="#contact">Sign Up/Sign In</a>
+                        <a href="login.php">Sign Up/Sign In</a>
                     </li>
                 </ul>
             </div>

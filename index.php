@@ -25,6 +25,7 @@
 
     <script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>   
     <script src="js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+	<script src="http://rawgit.com/botmonster/jquery-bootpag/master/lib/jquery.bootpag.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,20 +39,89 @@
 		$( "#searchByLocRentButton" ).click(function() {
 		
 			$.ajax({
-				url: 'apt/search_by_location_rent.php', 
+				url: 'apt/search_apartments.php', 
 				data: {
 					searchLoc: $("#location").val(),
 					minrent: $("#minrent" ).val(),
-					maxrent: $("#maxrent").val()
+					maxrent: $("#maxrent").val(),
+					state: $("#select-state").val(),
+					city: $("#select-city").val()
 				},
 				success: function(data){
-					$('#searchResult').html(data);	
-				
+					if($("#minrent" ).val() != 0) {
+						$('#minrent_input').val($("#minrent" ).val());
+					}
+					if($("#maxrent" ).val() != 1000000) {
+							$("#maxrent_input").val($("#maxrent" ).val());
+					}
+					//$('#searchResult').html(data);	
+					$("#target-content").load("search_apartments.php?page=1");
 				},
 				//error:function(exception){alert('Exeption:'+exception);}
 				error: function (data) { console.log(data); }
 			});
 		});
+		$( "#select-state").change(function() {
+			$.ajax({
+				url: 'apt/search_apartments.php', 
+				data: {
+					searchLoc: $("#location").val(),
+					minrent: $("#minrent" ).val(),
+					maxrent: $("#maxrent").val(),
+					state: $("#select-state").val(),
+					city: $("#select-city").val()
+				},
+				success: function(data){
+					$('#searchResult').html(data);	
+				},
+				error: function (data) { console.log(data); }
+			});
+		});
+		$( "#select-city").change(function() {
+			$.ajax({
+				url: 'apt/search_by_location_rent.php', 
+				data: {
+					searchLoc: $("#location").val(),
+					minrent: $("#minrent" ).val(),
+					maxrent: $("#maxrent").val(),
+					state: $("#select-state").val(),
+					city: $("#select-city").val()
+				},
+				success: function(data){
+					$('#searchResult').html(data);	
+				},
+				//error:function(exception){alert('Exeption:'+exception);}
+				error: function (data) { console.log(data); }
+			});
+		});
+		$( "input[type=checkbox]").change(function() {
+			$.ajax({
+				url: 'apt/search_by_location_rent.php', 
+				data: {
+					searchLoc: $("#location").val(),
+					minrent: $("#minrent" ).val(),
+					maxrent: $("#maxrent").val(),
+					state: $("#select-state").val(),
+					city: $("#select-city").val(),
+					beds_list: $("input[name='beds_list[]']").serialize(),
+					baths_list: $("input[name='baths_list[]']").serialize()
+				},
+				success: function(data){
+					$('#searchResult').html(data);	
+				},
+				//error:function(exception){alert('Exeption:'+exception);}
+				error: function (data) { console.log(data); }
+			});
+		});
+		
+			/*jQuery("#pagination li").live('click',function(e){
+			e.preventDefault();
+				jQuery("#target-content").html('loading...');
+				jQuery("#pagination li").removeClass('active');
+				jQuery(this).addClass('active');
+				var pageNum = this.id;
+				jQuery("#target-content").load("pagination.php?page=" + pageNum);
+			}); */
 	});
 	</script>
 
@@ -181,7 +251,7 @@
 						  <li>
 						  <label>State</label>
 						  <select id="select-state" class="form-control bfh-states" data-country="US">
-							<option data-hidden="true">Select One</option>
+							<option data-hidden="true" value="null">Select One</option>
 							<?php
 							$stmt = $db->stmt_init();
 								if($stmt->prepare("select distinct state from Address order by state") or die("Failed to retrieve amenities")) {
@@ -198,7 +268,7 @@
 						  <li>
 						  <label>City</label>
 						  <select id="select-city" class="form-control bfh-states" data-country="US">
-							<option data-hidden="true">Select One</option>
+							<option data-hidden="true" value="null">Select One</option>
 						    <?php
 							$stmt = $db->stmt_init();
 								if($stmt->prepare("select distinct city from Address order by city") or die("Failed to retrieve amenities")) {
@@ -289,7 +359,7 @@
 					<h2 id="sec0">Results</h2>
 				
 						<div id="searchResult"></div>
-					
+						<div id="page-selection"></div>
 				</div> 
 			</div>
 		</div>

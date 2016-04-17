@@ -349,13 +349,6 @@
 					</div>
 				</div>  
 				<div class="col-md-9">
-						  <label>Search by Building Name</label>
-						  <div class="input-group">
-							<input type="text" class="form-control">
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">Go!</button>
-							</span>
-							</div>
 					<h2 id="sec0">Results</h2>
 				
 						<div id="searchResult"></div>

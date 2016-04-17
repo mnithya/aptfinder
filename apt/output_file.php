@@ -55,7 +55,7 @@ ini_set('display_errors', 1);
 	
 
 	$output_text .= "</cs4750kwh5ye.". $_POST['export'] .">\r\n";
-	$output_text .= "xml file generated on ". $day ." at ". $time;
+	//$output_text .= "xml file generated on ". $day ." at ". $time;
 	$db->close();
 	mysqli_close($con);
 

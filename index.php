@@ -157,7 +157,7 @@
                         <a href="#services">Add a Listing</a>
                     </li>
                     <li>
-                        <a href="login.php">Sign Up/Sign In</a>
+                        <a href="Signup.php">Sign Up/Sign In</a>
                     </li>
                 </ul>
             </div>

@@ -110,9 +110,6 @@
     </div>
     <!-- /.intro-header -->
 
-    </div>
-    <!-- /.intro-header -->
-
 
 
     <div class="content-section-b">
@@ -272,7 +269,7 @@
 				$query = "insert into User( user_id, username, pword, email, first_name, last_name) values ('$count','$u', '$p', '$e','$f','$l')";
 				$result3 = mysqli_query($con, $query);
 		
-				echo "<script>alert (\"you have registered succesfully! Welcome!\")</script>";
+				echo "<script>alert (\"You have registered succesfully! Welcome!\")</script>";
 				//welcoming new user by redirecting to a homepage; cookie setting needed;	
 				} 
 			else if ($nrow > 0) {

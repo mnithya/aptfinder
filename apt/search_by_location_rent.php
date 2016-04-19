@@ -59,7 +59,6 @@ if(isset($_GET['baths_list']) && !empty($_GET['baths_list'])) {
 	for($i = 1; $i < count($baths_list); $i++) 
 	{	
 		array_push($baths, str_replace('&', '',$baths_list[$i]));
-		
 	}
 	$size = count($baths);
 	$count = 0;
@@ -92,7 +91,7 @@ $limit = 4;
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
 $start_from = ($page-1) * $limit; 
 
-$query = $query . " group by building_id LIMIT $start_from, $limit";
+$query = $query . " group by building_id";
 
 echo $query;
 if($stmt->prepare($query) or die("Failed to retrieve apartments")) {
@@ -127,7 +126,7 @@ if($stmt->prepare($query) or die("Failed to retrieve apartments")) {
 			}
 			echo "<div class='post-thumb'><img class='span2' src='" . $image . "' alt='' style='width:304px; height: 228;'></div>";
 			echo "<div class='post-content-container'><div class='post-content'>";
-			echo "<h3 class='post-heading'>" . $result['name'] . "</h3>";
+			echo "<h3 class='post-heading'><a href='apt_page.php?id=" . $result['building_id'] . "'>" . $result['name'] . "</a></h3>";
 			echo "<div class='rating inline'>"; 
 			$full_stars_num = floor($result['rating']);
 			$half_star = False;

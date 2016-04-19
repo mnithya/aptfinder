@@ -39,7 +39,7 @@
 		$( "#searchByLocRentButton" ).click(function() {
 		
 			$.ajax({
-				url: 'apt/search_apartments.php', 
+				url: 'apt/search_by_location_rent.php', 
 				data: {
 					searchLoc: $("#location").val(),
 					minrent: $("#minrent" ).val(),
@@ -54,8 +54,8 @@
 					if($("#maxrent" ).val() != 1000000) {
 							$("#maxrent_input").val($("#maxrent" ).val());
 					}
-					//$('#searchResult').html(data);	
-					$("#target-content").load("search_apartments.php?page=1");
+					$('#searchResult').html(data);	
+					//$("#target-content").load("search_apartments.php?page=1");
 				},
 				//error:function(exception){alert('Exeption:'+exception);}
 				error: function (data) { console.log(data); }
@@ -63,7 +63,7 @@
 		});
 		$( "#select-state").change(function() {
 			$.ajax({
-				url: 'apt/search_apartments.php', 
+				url: 'apt/search_by_location_rent.php', 
 				data: {
 					searchLoc: $("#location").val(),
 					minrent: $("#minrent" ).val(),

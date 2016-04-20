@@ -119,7 +119,7 @@
 						$query = "SELECT DISTINCT * FROM Building NATURAL JOIN Address NATURAL JOIN Apartment INNER JOIN Images 
 						ON Images.purpose_building_id = Building.building_id 
 						WHERE building_id = " . $_GET['id'];
-
+						//echo $query;
 						//$query = "SELECT * FROM Building;";
 						$result = mysqli_query($con, $query);
 						while($row = mysqli_fetch_assoc($result)) {
@@ -162,7 +162,7 @@
 							
 							echo "<div class='col-xs-6 col-md-4'>";
 							echo "<div class='well'>";
-							echo "<h3 align='right'>" . "Apartments Available!" . "</h3>";
+							echo "<h3 align='right'>" . "See Apartments Below!" . "</h3>";
 							echo "<p align='right' style='font-size: 26px;'>" . $row['rating'] . "/5<br/><small class='text-muted' style='font-weight: 500;'>Guest Rating</small></p>";
 							echo "<p align='right' style='color: #1aa3ff; font-size: 23px; font-weight: 500;'>Walk Score: " . $row['walk_score'] . "</p>";
 							echo "</div>";
@@ -191,7 +191,13 @@
 						$query = "Select * from Apartment natural join Address natural join Building inner join Images on Images.purpose_building_id = Building.building_id where building_id = " . $_GET['id'] . " AND availability = 1";
 
 						$result = mysqli_query($con, $query);
-						echo "<h3>Available Apartments: </h3>";
+						
+						if($result->num_rows < 1) {
+							echo "<h4>There are no available apartments.</h4><br/>";
+						}
+						else {
+							echo "<h3>Available Apartments: </h3><br/>";
+						}
 						while($row = mysqli_fetch_assoc($result)) {
 							echo "<br><br><div class='panel panel-default'><div class='panel-body'>";
 							echo "<div class='col-lg-4'>";
@@ -200,7 +206,7 @@
 							echo "<br/>Bathrooms: " . $row['num_bathrooms'];
 							echo "</div>";
 							echo "<div align='right' class='col-lg-4 pull-right'>";
-							echo "<br><button type='button' class='btn btn-primary btn-lg'>Rent!</button>";
+							echo "<br><a href='./rent.php?apt_num=" . $row['apt_num'] . "&id=" . $row['building_id'] . "' class='btn btn-primary btn-lg'>Rent!</a>";
 							echo "</div>";
 							echo "</div>";
 							echo "</div>";

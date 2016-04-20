@@ -13,48 +13,21 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	
     <!-- Custom CSS -->
     <link href="css/landing-page.css" rel="stylesheet">
+	<link href="css/thumbnail.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"> 
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-
-
-
-   <script>
-	$(document).ready(function() {
-		$( "#searchByLocRentButton" ).click(function() {
-		
-			$.ajax({
-				url: 'apt/search_by_location_rent.php', 
-				data: {
-					searchLoc: $("#location").val(),
-					minrent: $("#minrent" ).val(),
-					maxrent: $("#maxrent").val()
-				},
-				success: function(data){
-					$('#searchResult').html(data);	
-				
-				},
-				//error:function(exception){alert('Exeption:'+exception);}
-				error: function (data) { console.log(data); }
-			});
-		});
-	});
-	</script>
+    <script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>   
+    <script src="js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
 
 </head>
-  
+
 <body>
 	<?php
 	require "apt/dbutil.php";
@@ -117,8 +90,9 @@
     </div>
     <!-- /.intro-header -->
 
-
-
+    </div>
+    <!-- /.intro-header -->
+	
     <div class="content-section-b">
 
         <div class="container">
@@ -129,47 +103,50 @@
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Sign Up</h2>
                     <p class="lead">
-						<form class="col-md-12" method="POST" action="Signup.php">
+                    	<!-- KK fix form submit and check with POST -->
+						<form class="col-md-12">
 						    <div class="form-group">
-						        <input type="text" class="form-control input-lg" placeholder="First Name" name = "inputFname">
+						        <input type="text" class="form-control input-lg" placeholder="First Name">
 						    </div>
 						    <div class="form-group">
-						        <input type="text" class="form-control input-lg" placeholder="Last Name" name="inputLname">
+						        <input type="text" class="form-control input-lg" placeholder="Last Name">
 						    </div>
 						    <div class="form-group">
-						        <input type="text" class="form-control input-lg" placeholder="Email" name="inputEmail">
+						        <input type="text" class="form-control input-lg" placeholder="Username">
 						    </div>
 						    <div class="form-group">
-						        <input type="text" class="form-control input-lg" placeholder="Username" name = "inputUname">
+						        <input type="text" class="form-control input-lg" placeholder="Email">
 						    </div>
 						    <div class="form-group">
-						        <input type="password" class="form-control input-lg" placeholder="Password" name = "inputPword">
+						        <input type="password" class="form-control input-lg" placeholder="Password">
 						    </div>
 						    <div class="form-group">
-						        <input type="password" class="form-control input-lg" placeholder="Confirm Password" name="inputconfirm">
+						        <input type="password" class="form-control input-lg" placeholder="Confirm Password">
 						    </div>
 						    <div class="form-group">
-						        <button class="btn btn-primary btn-lg btn-block" name="register">Create Account</button>
+						        <button class="btn btn-primary btn-lg btn-block">Create Account</button>
+						        <span><a href="#">Need help?</a></span>
+						        <span class="pull-right"><a href="#">New Registration</a></span>
 						    </div>
 						</form>
                     </p>
                 </div>
-
-				<div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                	<hr class="section-heading-spacer">
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Login</h2>
                     <p class="lead">
-
-						<form class="col-md-12" method="POST" action="Signup.php">
+                    	<!-- KK fix form submit and check with POST -->
+						<form class="col-md-12">
 						    <div class="form-group">
-						        <input type="text" class="form-control input-lg" placeholder="Username" name="inputUsername">
+						        <input type="text" class="form-control input-lg" placeholder="Email">
 						    </div>
 						    <div class="form-group">
-						        <input type="password" class="form-control input-lg" placeholder="Password" name="inputPassword">
+						        <input type="password" class="form-control input-lg" placeholder="Password">
 						    </div>
 						    <div class="form-group">
-						        <button class="btn btn-primary btn-lg btn-block" name="signin">Sign In</button>
+						        <button class="btn btn-primary btn-lg btn-block">Sign In</button>
+						        <span><a href="#">Need help?</a></span>
 						    </div>
 						</form>
                     </p>
@@ -180,10 +157,9 @@
         <!-- /.container -->
 
     </div>
+    <!-- /.content-section-b -->
 
-
-
-	  <!-- Footer -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
@@ -217,124 +193,6 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
-	
 </body>
 
-
-
-
-<?php
-	session_start();
-	if (isset($_POST["register"])){
-
-		//SQL injection needs to be prevented;
-
-	
-	
-		include_once("./library.php");
-		$con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
-	
-		if (mysqli_connect_errno()){
-			echo "Failed to connect to MySQL: ". mysqli_connect_error();
-		}
-		
-
-		$f = $_POST["inputFname"];
-		$l = $_POST["inputLname"];
-		$e = $_POST["inputEmail"];
-		$u = stripslashes($_POST["inputUname"]);
-		$p = $_POST["inputPword"];
-		$c = $_POST["inputconfirm"];
-	
-	
-		if($p == $c){
-		
-			$sql = "Select * FROM User";
-			$result = mysqli_query($con, $sql);
-	
-			while ($row = mysqli_fetch_array($result)){
-				//echo $row['username'];
-				//echo "<br>";
-				}
-	
-			$row = $result -> num_rows;
-			$count = $row + 1;
-			//echo $count;
-	
-			$sql2 = "SELECT username from User where User.username = '$u'";
-			$result2 = mysqli_query($con, $sql2);
-			$nrow = $result2 -> num_rows;
-	
-			//password hashing 
-			$p = password_hash($p, PASSWORD_DEFAULT);
-	
-			//echo $p;
-	
-			//$ct = 0;
-			if ($nrow == 0 ) {
-	
-				$query = "insert into User( user_id, username, pword, email, first_name, last_name) values ('$count','$u', '$p', '$e','$f','$l')";
-				$result3 = mysqli_query($con, $query);
-		
-				echo "<script>alert (\"You have registered succesfully! Welcome!\")</script>";
-				//welcoming new user by redirecting to a homepage; cookie setting needed;	
-				} 
-			else if ($nrow > 0) {
-				echo "<script>alert (\"Username already exists. Pleaes choose different username!\")</script>";
-	
-				}
-		} else {
-	
-	
-			echo "<script>alert (\"you have entered different passwords, please confirm your password again\")</script>";
-			//echo "you have entered different passwords, please confirm your password again";
-			mysqli_close($db_connection);
-		
-		}
-	}
-
-	else if (isset($_POST["signin"])){
-		
-		include_once("./library.php");
-		$con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
-	
-		if (mysqli_connect_errno()){
-			echo "Failed to connect to MySQL: ". mysqli_connect_error();
-			}
-		
-	
-			$un = stripslashes($_POST["inputUsername"]);
-			$pw = $_POST["inputPassword"];
-	
-			$stmt = $con->prepare('SELECT * FROM User Where username = ?');
-			$stmt-> bind_param('s', $name);
-			$stmt->execute();
-			$stmt->close();
-
-			
-			$query = "select * FROM User WHERE username='$un'";
-			$result = mysqli_query($con, $query);
-			$num = $result->num_rows;
-	
-		
-			if ($num == 1) {
-					$row = $result->fetch_array();
-					if (password_verify($pw, stripslashes($row['pword']))) {
-							$_SESSION['username'] = $un;
-						//echo "Match";
-						//header("Location:index.php");
-						//exit();
-					} else {
-						echo '<h3>The username or password do not match </h3>';
-					}
-					
-			}
-	
-		mysqli_close($conn);
-	
-		}
-			
-?>
-		
-		
-		
+</html>

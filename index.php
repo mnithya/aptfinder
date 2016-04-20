@@ -145,19 +145,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="#">Home</a>
+                <a class="navbar-brand topnav" href="index.php#">Home</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#about">About</a>
+                        <a href="index.php#about">About</a>
                     </li>
                     <li>
-                        <a href="#services">Add a Listing</a>
+                        <a href="index.php#advancedSearch">Search</a>
+                    </li>
+                    <li>
+                        <a href="user_profile.php">Profile</a>
                     </li>
                     <li>
                         <a href="Signup.php">Sign Up/Sign In</a>
+                    </li>
+                    <li>
+                        <a href="index.php#contact">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -236,10 +242,49 @@
 
     </div>
     <!-- /.intro-header -->
-	
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Find Your Dream Apartment<br>by Team Awesome-Sawce</h2>
+                    <p class="lead">
+                        You are only a few clicks away from finding your dream home or an apartment for a secret getaway. Check out our <a target="_blank" href="http://www.psdcovers.com/">Apartment Finder</a>! Become a member and you can check out an apartment with a single click!
+                    </p>
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" style="border-radius: 4px;" src="img/apt_dream.jpg" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+
+    <!-- Header -->
+    <div class="intro-header"  id="advancedSearch">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <br/>
+                    <br/>
+                     <h2 style="text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6); font-weight: 625">Find your dream home today!</h2>
+                    <hr class="intro-divider">
+                 </div> 
+            </div>   
+        </div>          
+    </div>
+    <!-- /.intro-header -->
+
     <!-- Page Content -->
 
-		<div class="container" id="advancedSearch">
+		<div class="container">
 			<div class="row">
 					<br/><br/><br/>
 				<div class="col-md-3" id="leftCol">
@@ -356,31 +401,6 @@
 				</div> 
 			</div>
 		</div>
-	
-	
-    <div class="content-section-b">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Find Your Dream Apartment<br>by Team Awesome-Sawce</h2>
-                    <p class="lead">
-                        You are only a few clicks away from finding your dream home or an apartment for a secret getaway. Check out our <a target="_blank" href="http://www.psdcovers.com/">Apartment Finder</a>! Become a member and you can check out an apartment with a single click!
-                    </p>
-                </div>
-                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" style="border-radius: 4px;" src="img/apt_dream.jpg" alt="">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.content-section-b -->
 
 	<a  name="contact"></a>
     <div class="banner">

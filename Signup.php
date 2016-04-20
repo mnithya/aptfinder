@@ -314,9 +314,12 @@
 					$row = $result->fetch_array();
 					if (password_verify($pw, stripslashes($row['pword']))) {
 							$_SESSION['username'] = $un;
-						//echo "Match";
-						//header("Location:index.php");
-						//exit();
+							echo "<script> alert('You are logged in successfully');";
+							echo "</script>";
+
+							$URL="index.php";
+							echo "<script>location.href='$URL'</script>";
+							exit();
 					} else {
 						echo '<h3>The username or password do not match </h3>';
 					}

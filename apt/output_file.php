@@ -18,6 +18,11 @@ ini_set('display_errors', 1);
 	$stmt = $db->stmt_init();
 	$columns = array();
 
+	if(!isset($_POST['export']))
+	{
+		header('Location: ./error.html');
+	}		
+
 	$output_file = "exported_table.xml";
 	// http://stackoverflow.com/questions/13760860/how-to-create-xml-files-via-php-and-mysql
 	// http://stackoverflow.com/questions/5648420/get-all-columns-from-all-mysql-tables

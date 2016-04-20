@@ -101,7 +101,7 @@
         </div>
         <!-- /.container -->
     </nav>
-    
+
     <!-- Header -->
     <a name="banner"></a>
     <!-- /.intro-header -->
@@ -116,7 +116,9 @@
 					
 					<?php 
 					
-						$query = "Select distinct * from Building natural join Address natural join Apartment inner join Images on Images.purpose_building_id = Building.building_id where building_id = " . $_GET['id'];
+						$query = "SELECT DISTINCT * FROM Building NATURAL JOIN Address NATURAL JOIN Apartment INNER JOIN Images 
+						ON Images.purpose_building_id = Building.building_id 
+						WHERE building_id = " . $_GET['id'];
 
 						//$query = "SELECT * FROM Building;";
 						$result = mysqli_query($con, $query);

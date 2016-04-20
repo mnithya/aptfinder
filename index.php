@@ -243,7 +243,7 @@
     </div>
     <!-- /.intro-header -->
 
-    <div class="content-section-b">
+    <div class="content-section-b" id="about">
 
         <div class="container">
 

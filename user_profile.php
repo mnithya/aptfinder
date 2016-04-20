@@ -29,12 +29,15 @@
 </head>
 
 <body>
-	<?php
-	require "apt/dbutil.php";
-    $db = DbUtil::loginConnection();
-	date_default_timezone_set('America/New_York');
-	$timestamp = time();
-	?>
+    <?php 
+    include_once("library.php"); // To connect to the database
+    $con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
+    // Check connection
+    if (mysqli_connect_errno())
+    {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+    ?>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
@@ -72,7 +75,7 @@
         </div>
         <!-- /.container -->
     </nav>
-    
+
 	    <!-- Header -->
     <a name="banner"></a>
     <div class="intro-header">
@@ -92,6 +95,7 @@
     <hr>
     <div class="container">
     <div class="row">
+        <!-- KK place username -->
         <div class="col-sm-10"><h1>UserNameGoesHere!!</h1></div>
         <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://pre10.deviantart.net/b323/th/pre/i/2012/235/0/2/facebook_profile_image_by_edgarsvensson-d5c7rhk.jpg" style="width:150px; height: auto;"></a></div>
     </div>
@@ -100,26 +104,26 @@
               
           <ul class="list-group">
             <li class="list-group-item text-muted">Profile</li>
+            <!-- KK grab name -->
             <li class="list-group-item text-right"><span class="pull-left"><strong>Real name</strong></span> Joseph Doe</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Joined</strong></span> 2.13.2014</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Last seen</strong></span> Yesterday</li>
+
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Joined</strong></span> 4.20.2016</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Last seen</strong></span> Today</li>
           </ul> 
-               
-          <!-- <div class="panel panel-default">
-            <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><a href="http://bootply.com">bootply.com</a></div>
-          </div> -->
           
           <ul class="list-group">
             <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+            <!-- KK count renting -->
             <li class="list-group-item text-right"><span class="pull-left"><strong>Renting</strong></span> 2</li>
+            <!-- KK count favourites -->
             <li class="list-group-item text-right"><span class="pull-left"><strong>Favourites</strong></span> 13</li>
           </ul> 
                
           <div class="panel panel-default">
-            <div class="panel-heading">Social Media</div>
+            <div class="panel-heading">Contact</div>
             <div class="panel-body">
                 <p>
+                    <!-- KK add email here -->
                     <i class="fa fa-facebook fa-2x"></i>
                     <i class="fa fa-github fa-2x"></i>
                     <i class="fa fa-twitter fa-2x"></i>
@@ -140,9 +144,34 @@
               
           <div class="tab-content">
             <div class="tab-pane active" id="home">
+              <h4>Currently Renting</h4>
+              <!-- KK add apartment detail for apartments renting! -->
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td><i class="pull-right fa fa-edit"></i> Today, 1:00 - Jeff Manzi liked your post.</td>
+                    </tr>
+                    <tr>
+                      <td><i class="pull-right fa fa-edit"></i> Today, 12:23 - Mark Friendo liked and shared your post.</td>
+                    </tr>
+                    <tr>
+                      <td><i class="pull-right fa fa-edit"></i> Today, 12:20 - You posted a new blog entry title "Why social media is".</td>
+                    </tr>
+                    <tr>
+                      <td><i class="pull-right fa fa-edit"></i> Yesterday - Karen P. liked your post.</td>
+                    </tr>
+                    <tr>
+                      <td><i class="pull-right fa fa-edit"></i> 2 Days Ago - Philip W. liked your post.</td>
+                    </tr>
+                    <tr>
+                      <td><i class="pull-right fa fa-edit"></i> 2 Days Ago - Jeff Manzi liked your post.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
               <h4>Recent Activity</h4>
-              
               <div class="table-responsive">
                 <table class="table table-hover">
                   

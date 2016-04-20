@@ -217,7 +217,7 @@
 
 
 <?php
-
+	session_start();
 	if (isset($_POST["register"])){
 
 		//SQL injection needs to be prevented;
@@ -287,7 +287,7 @@
 	}
 
 	else if (isset($_POST["signin"])){
-	
+		
 		include_once("./library.php");
 		$con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
 	
@@ -304,7 +304,7 @@
 			$stmt->execute();
 			$stmt->close();
 
-	
+			
 			$query = "select * FROM User WHERE username='$un'";
 			$result = mysqli_query($con, $query);
 			$num = $result->num_rows;
@@ -313,6 +313,7 @@
 			if ($num == 1) {
 					$row = $result->fetch_array();
 					if (password_verify($pw, stripslashes($row['pword']))) {
+							$_SESSION['username'] = $un;
 						//echo "Match";
 						//header("Location:index.php");
 						//exit();

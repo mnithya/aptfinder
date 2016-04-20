@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="index.php">Home</a>
+                <a class="navbar-brand topnav" href="index.php#">Home</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -55,10 +55,16 @@
                         <a href="index.php#about">About</a>
                     </li>
                     <li>
-                        <a href="user_profile.php">View Profile</a>
+                        <a href="index.php#advancedSearch">Search</a>
+                    </li>
+                    <li>
+                        <a href="user_profile.php">Profile</a>
                     </li>
                     <li>
                         <a href="Signup.php">Sign Up/Sign In</a>
+                    </li>
+                    <li>
+                        <a href="index.php#contact">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -66,6 +72,7 @@
         </div>
         <!-- /.container -->
     </nav>
+    
 	    <!-- Header -->
     <a name="banner"></a>
     <div class="intro-header">

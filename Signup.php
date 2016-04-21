@@ -261,7 +261,7 @@
 				}
 	
 			$row = $result -> num_rows;
-			$count = $row + 1;
+			$count = $row + 5;
 			//echo $count;
 	
 			$sql2 = "SELECT username from User where User.username = '$u'";
@@ -277,9 +277,13 @@
 			if ($nrow == 0 ) {
 	
 				$query = "insert into User( user_id, username, pword, email, first_name, last_name) values ('$count','$u', '$p', '$e','$f','$l')";
-				$result3 = mysqli_query($con, $query);
-		
+				$result3 = mysqli_query($con, $query) or die ("wrong: ".$con-> error);
+			
+				
 				echo "<script>alert (\"You have registered succesfully! Welcome!\")</script>";
+				$URL="index.php";
+				echo "<script>location.href='$URL'</script>";
+				
 				//welcoming new user by redirecting to a homepage; cookie setting needed;	
 				} 
 			else if ($nrow > 0) {
@@ -315,15 +319,36 @@
 			$stmt->close();
 
 			
+			
 			$query = "select * FROM User WHERE username='$un'";
 			$result = mysqli_query($con, $query);
 			$num = $result->num_rows;
 	
+			$query_isAdmin = "select * FROM User WHERE username='$un'";
+			$resulta = mysqli_query($con, $query_isAdmin);
+			
+			$row = $resulta ->fetch_array();
+			$Admin = $row['isAdmin'];
+	
+			
+	
+			$_SESSION['isAdmin'] = -1;
 		
 			if ($num == 1) {
 					$row = $result->fetch_array();
 					if (password_verify($pw, stripslashes($row['pword']))) {
 							$_SESSION['username'] = $un;
+							
+							
+							if ($Admin == 0){
+								$_SESSION['isAdmin'] = 0;
+								}
+							else if ($Admin == 1){
+								$_SESSION['isAdmin'] = 1;
+							}
+
+							echo '<script type="text/javascript">alert("'.$_SESSION['isAdmin'].'");</script>';
+							
 							echo "<script> alert('You are logged in successfully');";
 							echo "</script>";
 

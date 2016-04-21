@@ -347,7 +347,7 @@
 								$_SESSION['isAdmin'] = 1;
 							}
 
-							echo '<script type="text/javascript">alert("'.$_SESSION['isAdmin'].'");</script>';
+							//echo '<script type="text/javascript">alert("'.$_SESSION['isAdmin'].'");</script>';
 							
 							echo "<script> alert('You are logged in successfully');";
 							echo "</script>";

@@ -45,7 +45,7 @@
     $result = mysqli_query($con, $query);
     while($row = mysqli_fetch_assoc($result)) {
 
-
+	}
     ?>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">

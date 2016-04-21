@@ -118,7 +118,7 @@
 					
 						$query = "SELECT DISTINCT * FROM Building NATURAL JOIN Address NATURAL JOIN Apartment INNER JOIN Images 
 						ON Images.purpose_building_id = Building.building_id 
-						WHERE building_id = " . $_GET['id'];
+						WHERE building_id = " . $_GET['id'] . " group by building_id";
 						//echo $query;
 						//$query = "SELECT * FROM Building;";
 						$result = mysqli_query($con, $query);

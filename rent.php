@@ -1,6 +1,16 @@
 <?php
 
-include_once("./library.php");
+session_start();
+
+if ($_SESSION['isAdmin'] == 0) {
+	include_once("./libraryC.php");
+	}
+else if ($_SESSION['isAdmin'] ==1) {
+	include_once("./libraryA.php");
+} else {
+	include_once("./libraryB.php");
+	}
+	
 $con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
 session_start();
 
@@ -24,6 +34,17 @@ while($row = mysqli_fetch_assoc($result)) {
 
 $query = "insert into Rents (`rents-apt_num`, `rents-building_id`, `rents-user_id`) values($apt_num, $building_id, $userid)";
 
-mysqli_query($con, $query);
+$result = mysqli_query($con, $query);
+echo $query;
+echo $result->num_rows;
+
+$newURL = "./apt_page?id=$building_id";
+
+echo $username;
+echo $userid;
+//header('Location: '.$newURL);
+
+mysqli_close($db_connection);
+
 
 ?>

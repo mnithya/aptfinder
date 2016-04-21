@@ -7,6 +7,16 @@ $timestamp = time();
 
 $stmt = $db->stmt_init();
 
+/*
+include_once("./library.php");
+$con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
+session_start();
+
+if (mysqli_connect_errno()){
+	echo "Failed to connect to MySQL: ". mysqli_connect_error();
+}
+*/
+
 $location= '%' . $_GET['searchLoc'] . '%';
 $min_rent = $_GET['minrent'];
 $max_rent = $_GET['maxrent'];
@@ -73,6 +83,44 @@ if(isset($_GET['baths_list']) && !empty($_GET['baths_list'])) {
 	array_push($conditions, $baths_string);
 }
 
+
+if(isset($_GET['amenities_list']) && !empty($_GET['amenities_list'])) {
+	echo "???";
+	$string = $_GET['amenities_list'];
+	//echo $string;
+	print_r($_GET['amenities_list']);
+	$include = "(";
+	$and = "";
+	$elements = explode("amenities_list%5B%5D=", $string);
+	//echo $elements;
+	$amen = array();
+	for($i = 1; $i < count($elements); $i++) 
+	{	
+		array_push($amen, str_replace('&', '',$elements[$i]));
+		
+	}
+	//print_r($amen);
+	for($i = 0; $i < count($amen); $i++) 
+	{	
+		if($i < count($amen)-1)
+		{
+			$include = $include . "'" . $amen[$i] . "', ";
+			$and = $and . "'" . $amen[$i] . "') AS T". $i . " NATURAL JOIN (SELECT `ba-building_id`, `name` FROM `Building_Amenity` INNER JOIN `Building` ON `ba-building_id`=`building_id` WHERE `ba-amenity_id` =";
+		}
+		else 
+		{
+			$include = $include . "'" . $amen[$i] . "')";
+			$and = $and . "'" . $amen[$i] . "') AS T". $i. ")";
+
+		}
+		
+	}
+	
+	$sql = "`name` IN ((SELECT `ba-building_id`, `name` FROM `Building_Amenity` INNER JOIN `Building` ON `ba-building_id`=`building_id` WHERE `ba-amenity_id` =" . $and;
+	array_push($conditions, $sql);
+}
+
+
 $query = "select * from Building natural join Apartment natural join Address inner join Images on Images.purpose_building_id = Building.building_id where ";
 $first = True;
 $size = count($conditions);
@@ -93,6 +141,8 @@ $start_from = ($page-1) * $limit;
 
 $query = $query . " group by building_id";
 
+$resultQ = mysqli_query($con, $query);
+
 echo $query;
 if($stmt->prepare($query) or die("Failed to retrieve apartments")) {
 		//echo $query;
@@ -109,11 +159,15 @@ if($stmt->prepare($query) or die("Failed to retrieve apartments")) {
 		 }
  
 		call_user_func_array(array($stmt, 'bind_result'), $params);
+		
 		/*Bind result end */
 		
 		//echo "<table class='table table-bordered'>";
 		//echo "<thead><th>building_id</th><th>apt_num</th><td>Image</td></thead><tbody>\n";
 		$total_records = 0;
+
+	//while($result = mysqli_fetch_assoc($resultQ)) {
+
 		while($stmt->fetch()) {
 			echo "<div class='post-container'>";
 			$image = "";
@@ -154,6 +208,7 @@ if($stmt->prepare($query) or die("Failed to retrieve apartments")) {
 			echo "</div></div><br/>";
 			$total_records++;
 		}
+	}
 		//echo "</tbody></table>"; 
 		/*	$total_pages = ceil($total_records / $limit);  
 			$pagLink = "<ul class='pagination'>";  
@@ -163,7 +218,7 @@ if($stmt->prepare($query) or die("Failed to retrieve apartments")) {
 			echo $pagLink . "</ul>";  
 		*/
 		$stmt->close(); 
-	}
+	
 	
 $db->close();
 

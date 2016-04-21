@@ -31,12 +31,11 @@ $timestamp = time();
 					<div class='panel panel-default'>
 					<div class='panel-heading'>General Info</div>
 						<div class='panel-body' style='min-height: 300; max-height: 300; overflow-y: auto;'>
-							<input type=\"text\" name=\"bldg_name\" placeholder='Building Name' > <br/><br/>
-							<input type=\"text\" name=\"bldg_url\" placeholder='Website'> <br/><br/>
-							<input type=\"text\" name=\"bldg_max_occ\" placeholder='Max Occupancy'> <br/><br/>
-							<input type=\"text\" name=\"bldg_walk_score\" placeholder='Walk Score'> <br/><br/>
-							<input type=\"text\" name=\"bldg_rating\" placeholder='Rating'> <br/><br/>
-							Pets Allowed: <select name=\"bldg_pets\">
+							<input type=\"text\" name=\"bldg_name\" placeholder='Building Name' required> <br/><br/>
+							<input type=\"text\" name=\"bldg_url\" placeholder='Website' required> <br/><br/>
+							<input type=\"text\" name=\"bldg_walk_score\" placeholder='Walk Score' required> <br/><br/>
+							<input type=\"text\" name=\"bldg_rating\" placeholder='Rating' required> <br/><br/>
+							Pets Allowed: <select name=\"bldg_pets\" required>
 								<option value=\"1\">Yes</option>
 								<option value=\"0\">No</option>
 							</select> 
@@ -50,21 +49,14 @@ $timestamp = time();
 		<div class='panel-heading'>
 			Building Address
 			</div>
-			<div class='panel-body' style='min-height: 300; max-height: 300; overflow-y: auto;'>";
-	$stmt = $db->stmt_init();
-	if($stmt->prepare("select * from Address") or die(mysqli_error($db))) {
-		$stmt->execute();
-		$stmt->bind_result($address_id, $street, $city, $state, $zipcode, $street_num);
-		while($stmt->fetch()) {
-			echo "<input type=\"radio\" name=\"bldg_addr\" value=$address_id>";
-			echo "    $street_num $street $city, $state $zipcode";
-			echo "</br>";
-		}
-		$stmt->close();
-	}
-	else{
-		echo "Failed to retrieve addresses";
-	}
+			<div class='panel-body' style='min-height: 300; max-height: 300; overflow-y: auto;'>
+			<input type=\"text\" name=\"address_street_num\" placeholder='Street Number' required> <br/><br/>
+			<input type=\"text\" name=\"address_street\" placeholder='Street ' required> <br/><br/>
+			<input type=\"text\" name=\"address_city\" placeholder='City' required> <br/><br/>
+			<input type=\"text\" name=\"address_state\" placeholder='State' required> <br/><br/>
+			<input type=\"text\" name=\"address_zipcode\" placeholder='Zipcode' required> <br/><br/>
+			";
+	
 	echo "</div>
 	</div>
 	</div>";
@@ -102,6 +94,9 @@ $timestamp = time();
 	style=\"text-align: center; color: #333; background-color: #fff; border-color: #ccc; 
 		text-transform: uppercase; font-size: 14px; font-weight: 400; letter-spacing: 2px; 
 		padding: 10px 16px; font-size: 14px; line-height: 1.3333333; border-radius: 6px;\">
+
+	<span style=\"display:inline-block; width:15;\"></span>
+	<a href=\"./index.html\" class=\"btn btn-default btn-lg\"><span class=\"network-name\">Homepage</span></a>
 	</div>
 	</div>
 		</form></body></html>";

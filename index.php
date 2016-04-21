@@ -104,7 +104,8 @@
 					state: $("#select-state").val(),
 					city: $("#select-city").val(),
 					beds_list: $("input[name='beds_list[]']").serialize(),
-					baths_list: $("input[name='baths_list[]']").serialize()
+					baths_list: $("input[name='baths_list[]']").serialize(),
+					amenities_list: $("input[name='amenity_input[]']").serialize()
 				},
 				success: function(data){
 					$('#searchResult').html(data);	
@@ -121,6 +122,7 @@
 
 <body>
 	<?php
+	session_start();
 	require "apt/dbutil.php";
     $db = DbUtil::loginConnection();
 	date_default_timezone_set('America/New_York');
@@ -142,21 +144,34 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="apt/index.html">Admin Tools</a>
-                    </li>
+                    
+                    <?php
+                    if ($_SESSION['isAdmin'] == 1){
+                    	echo "<li> <a href='apt/index.html'> Admin Tools</a></li>" ;  
+                    }
+                    ?>
                     <li>
                         <a href="index.php#about">About</a>
                     </li>
                     <li>
                         <a href="index.php#advancedSearch">Search</a>
                     </li>
-                    <li>
-                        <a href="user_profile.php">Profile</a>
-                    </li>
-                    <li>
-                        <a href="Signup.php">Sign Up/Sign In</a>
-                    </li>
+                    <?php
+                    session_start();
+                    if (isset($_SESSION['username'])){
+                    	echo "<li> <a href='user_profile.php'> Profile </a></li>" ;   
+                    	echo "<li> <a href='logout.php'> Log out </a></li>" ;   
+                    } else {
+                    	echo "<li> <a href='Signup.php'> Sign Up/Sign in </a></li>" ;   
+					}
+					?>
+
+
+                    
+                    
+                    
+                    
+                    
                     <li>
                         <a href="index.php#contact">Contact Us</a>
                     </li>
@@ -377,7 +392,7 @@
 										$stmt->bind_result($amenity_id, $name);
 										while($stmt->fetch()) {
 												echo "<div class='checkbox'>";
-												echo "<label><input type=\"checkbox\" name=\"amenity_input[]\" value=$amenity_id>";
+												echo "<label><input type=\"checkbox\" name='amenity_input[]' value=$amenity_id>";
 												echo "$name</label></div>";
 										}
 										$stmt->close();

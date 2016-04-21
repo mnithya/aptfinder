@@ -81,6 +81,11 @@ $timestamp = time();
 	</div>
 
 	</div>
+	</div>
+	<div class='container'>
+	<div class='row' style='text-align:center;'>
+	<a href=\"./index.html\" class=\"btn btn-default btn-lg\"><span class=\"network-name\">Homepage</span></a>
+	</div>
 	</div>";
 
 	echo "</body></html>";

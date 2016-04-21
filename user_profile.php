@@ -29,6 +29,7 @@
 
 <body>
     <?php 
+    session_start();
     include_once("library.php"); // To connect to the database
     $con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
     // Check connection
@@ -63,21 +64,27 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="apt/index.html">Admin Tools</a>
-                    </li>
+                     <?php
+                    if ($_SESSION['isAdmin'] == 1){
+                    	echo "<li> <a href='apt/index.html'> Admin Tools</a></li>" ;  
+                    }
+                    ?>
                     <li>
                         <a href="index.php#about">About</a>
                     </li>
                     <li>
                         <a href="index.php#advancedSearch">Search</a>
                     </li>
-                    <li>
-                        <a href="user_profile.php">Profile</a>
+                    
+                    
+                    <li> 
+                    	<a href='logout.php'> Log out </a>
                     </li>
-                    <li>
-                        <a href="Signup.php">Sign Up/Sign In</a>
-                    </li>
+                    
+                   
+                    
+                    
+                    
                     <li>
                         <a href="index.php#contact">Contact Us</a>
                     </li>

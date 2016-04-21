@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <cs4750kwh5ye.Amenity>
 	<Amenity amenity_id="1">
 		<name>Pool</name>
@@ -64,3 +65,52 @@
 		<name>Walk-In Closet</name>
 	</Amenity>
 </cs4750kwh5ye.Amenity>
+=======
+<cs4750kwh5ye.Apt_Availability>
+	<Apt_Availability bldg_id="1">
+		<bldg_name>Harrison Square</bldg_name>
+		<apt_totals>1</apt_totals>
+		<vacancy>0</vacancy>
+	</Apt_Availability>
+	<Apt_Availability bldg_id="2">
+		<bldg_name>The Post</bldg_name>
+		<apt_totals>2</apt_totals>
+		<vacancy>2</vacancy>
+	</Apt_Availability>
+	<Apt_Availability bldg_id="3">
+		<bldg_name>AVA Belltown</bldg_name>
+		<apt_totals>1</apt_totals>
+		<vacancy>1</vacancy>
+	</Apt_Availability>
+	<Apt_Availability bldg_id="4">
+		<bldg_name>ArtHouse</bldg_name>
+		<apt_totals>2</apt_totals>
+		<vacancy>2</vacancy>
+	</Apt_Availability>
+	<Apt_Availability bldg_id="5">
+		<bldg_name>CANVAS</bldg_name>
+		<apt_totals>2</apt_totals>
+		<vacancy>1</vacancy>
+	</Apt_Availability>
+	<Apt_Availability bldg_id="6">
+		<bldg_name>Hudson Crossing</bldg_name>
+		<apt_totals>3</apt_totals>
+		<vacancy>3</vacancy>
+	</Apt_Availability>
+	<Apt_Availability bldg_id="7">
+		<bldg_name>Avalon Clinton</bldg_name>
+		<apt_totals>4</apt_totals>
+		<vacancy>4</vacancy>
+	</Apt_Availability>
+	<Apt_Availability bldg_id="8">
+		<bldg_name>Stuyvesant Town</bldg_name>
+		<apt_totals>2</apt_totals>
+		<vacancy>2</vacancy>
+	</Apt_Availability>
+	<Apt_Availability bldg_id="9">
+		<bldg_name>The Renaissance</bldg_name>
+		<apt_totals>8</apt_totals>
+		<vacancy>8</vacancy>
+	</Apt_Availability>
+</cs4750kwh5ye.Apt_Availability>
+>>>>>>> ad8b773526d0326b9879bf986b76f132d463ca22

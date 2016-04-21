@@ -35,10 +35,11 @@
 		}
 		
 	}
+	
 	//echo $include;
 	//$sql = "SELECT `ba-building_id`, `name` FROM `Building_Amenity` INNER JOIN `Building` ON `ba-building_id`=`building_id` WHERE `ba-amenity_id` IN " . $include;
 	$sql = "SELECT `name` FROM ((SELECT `ba-building_id`, `name` FROM `Building_Amenity` INNER JOIN `Building` ON `ba-building_id`=`building_id` WHERE `ba-amenity_id` =" . $and;
-	//echo $sql;
+	echo $sql;
 	//echo "<br/>";
 	$result = mysqli_query($con,$sql);
 	while($row = mysqli_fetch_array($result)) {

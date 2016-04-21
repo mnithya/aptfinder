@@ -294,7 +294,7 @@
 							<option data-hidden="true" value="null">Select One</option>
 							<?php
 							$stmt = $db->stmt_init();
-								if($stmt->prepare("select distinct state from Address order by state") or die("Failed to retrieve amenities")) {
+								if($stmt->prepare("SELECT DISTINCT state FROM Address ORDER BY state") or die("Failed to retrieve amenities")) {
 										$stmt->execute();
 										$stmt->bind_result($state);
 										while($stmt->fetch()) {
@@ -311,7 +311,7 @@
 							<option data-hidden="true" value="null">Select One</option>
 						    <?php
 							$stmt = $db->stmt_init();
-								if($stmt->prepare("select distinct city from Address order by city") or die("Failed to retrieve amenities")) {
+								if($stmt->prepare("SELECT DISTINCT city FROM Address ORDER BY city") or die("Failed to retrieve amenities")) {
 										$stmt->execute();
 										$stmt->bind_result($city);
 										while($stmt->fetch()) {
@@ -323,7 +323,7 @@
 						  </select>
 						  </li>
 						  <li>
-							  <label>Bedrooms</label>
+							  <label>Minimum Bedrooms</label>
 							  <div id="bedroom-select">
 								  <div class="checkbox">
 								  <label><input type="checkbox" name="beds_list[]" value="1">1</label>
@@ -340,7 +340,7 @@
 							  </div>
 						  </li>
 						  <li>
-						      <label>Baths</label>
+						      <label>Minimum Baths</label>
 							  <div id="bathroom-select">
 								  <div class="checkbox">
 								  <label><input type="checkbox" name="baths_list[]" value="1">1</label>
@@ -368,11 +368,11 @@
 								</form>
 						  </li>
 						  <li style="margin-top: 10px;">
-						      <label>Apartment Amenities</label>
-							  <div id="amenities">
-							  <?php
-								$stmt = $db->stmt_init();
-								if($stmt->prepare("select amenity_id, name from Amenity") or die("Failed to retrieve amenities")) {
+						    <label>Apartment Amenities</label>
+							<div id="amenities">
+								<?php
+									$stmt = $db->stmt_init();
+									if($stmt->prepare("SELECT amenity_id, name FROM Amenity") or die("Failed to retrieve amenities")) {
 										$stmt->execute();
 										$stmt->bind_result($amenity_id, $name);
 										while($stmt->fetch()) {
@@ -381,8 +381,8 @@
 												echo "$name</label></div>";
 										}
 										$stmt->close();
-								}
-							  ?>
+									}
+								?>
 							</div>
 						  </li>
 						</ul>

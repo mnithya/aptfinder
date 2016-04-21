@@ -25,7 +25,6 @@
 
     <script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>   
     <script src="js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
-
 </head>
 
 <body>
@@ -43,9 +42,10 @@
     WHERE username = " . $_SESSION['username'];
 // KK FIXME
     $result = mysqli_query($con, $query);
-    while($row = mysqli_fetch_assoc($result)) {
+    if ($result->num_rows != 1) {
 
-	}
+    }
+    $row = mysqli_fetch_assoc($result); //grab user data
     ?>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
@@ -158,17 +158,107 @@
             <div class="tab-pane active" id="home">
               <h4>Currently Renting</h4>
               <!-- KK add apartment detail for apartments renting! -->
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <tbody>
-                    <tr>
-                      <td><i class="pull-right fa fa-edit"></i> </td>
-                    </tr>
-                    <tr>
-                      <td><i class="pull-right fa fa-edit"></i> Today, 12:23 - Mark Friendo liked and shared your post.</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class="table-responsive" id="sec0">
+                <div class="col-md-9">
+<?php
+// $stmt = $db->stmt_init();
+
+$username = $_SESSION["username"]
+$query = "SELECT user_id FROM User WHERE username = username";
+$result = mysqli_query($con, $query);
+$user_id = mysql_fetch_row($result)["user_id"];
+
+if (is_null($user_id)) {
+  echo "Failed to read query...".mysqli_connect_error();
+}
+
+echo "user_id: " . $user_id;
+// $query = "SELECT * FROM Rents NATURAL JOIN Building NATURAL JOIN Apartment NATURAL JOIN Address 
+//     INNER JOIN Images ON Images.purpose_building_id = Building.building_id WHERE Rents.`rents-user_id` = " . $user_id;
+// $first = True;
+
+// $beforeGrouping = $query;
+
+// $limit = 4;  
+// // if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+// $start_from = ($page-1) * $limit; 
+
+// $query = $query . " group by building_id";
+
+// echo $query;
+// if($stmt->prepare($query) or die("Failed to retrieve apartments")) {
+//     echo $query;
+//      $stmt->execute();
+
+//      /*Bind result start*/
+//      //source: https://gunjanpatidar.wordpress.com/2010/10/03/bind_result-to-array-with-mysqli-prepared-statements/
+//      $meta = $stmt->result_metadata();
+//      $result = array();
+//      while ($field = $meta->fetch_field())
+//      {
+//             $result[$field->name] = NULL;
+//             $params[] = &$result[$field->name];
+//      }
+ 
+//     call_user_func_array(array($stmt, 'bind_result'), $params);
+//     /*Bind result end */
+    
+//     //echo "<table class='table table-bordered'>";
+//     //echo "<thead><th>building_id</th><th>apt_num</th><td>Image</td></thead><tbody>\n";
+//     $total_records = 0;
+//     while($stmt->fetch()) {
+//       echo "<div class='post-container'>";
+//       $image = "";
+//       if($result['img_url'] === null || $result['img_url'] === "" || sizeof($result['img_url']) == 0) {
+//         //default image if img URL not set
+//         $image = "http://i.imgur.com/OK5gGu4.png";        
+//       }
+//       else {
+//         $image = $result['img_url'];
+//       }
+//       echo "<div class='post-thumb'><img class='span2' src='" . $image . "' alt='' style='width:304px; height: 228;'></div>";
+//       echo "<div class='post-content-container'><div class='post-content'>";
+//       echo "<h3 class='post-heading'><a href='apt_page.php?id=" . $result['building_id'] . "'>" . $result['name'] . "</a></h3>";
+//       echo "<div class='rating inline'>"; 
+//       $full_stars_num = floor($result['rating']);
+//       $half_star = False;
+//       if($result['rating'] - $full_stars_num >= .5) {
+//         $half_star = True;
+//       }
+//       echo " ";
+//       for($i = 0; $i < $full_stars_num; $i++) {
+//         echo "<i class='fa fa-star fa-lg'></i>";
+//       }
+//       if($half_star) {
+//         echo "<i class='fa fa-star-half fa-lg'></i>";
+//       }
+//       echo "</div>";
+//       echo "<div class='post-rent'>$" . number_format($result['rent']) . "/month</div>";
+//       echo "<br/><br/>";
+//                         echo "<div class='post-location'>" . $result['city'] . ", " . $result['state'] . "</div>";
+
+//       echo "<p class='description'>"; 
+//       echo "<br/>Bedrooms: " . $result['num_bedrooms'] . "<br/>";
+//       echo "Bathrooms: " . $result['num_bathrooms'] . "<br/>";
+//       echo "<font color='#2FC500'>Walk Score: " . $result['walk_score'] . "</font>";
+//       echo "</p>";
+//       echo "</div>";
+//       echo "</div></div><br/>";
+//       $total_records++;
+//     }
+//     //echo "</tbody></table>"; 
+//     /*  $total_pages = ceil($total_records / $limit);  
+//       $pagLink = "<ul class='pagination'>";  
+//       for ($i=1; $i<=$total_pages; $i++) {  
+//              $pagLink .= "<li><a href='index.php?page=".$i."'>".$i."</a></li>";  
+//       };  
+//       echo $pagLink . "</ul>";  
+//     */
+//     $stmt->close(); 
+//   }
+?>
+
+                </div> 
               </div>
               
              </div><!--/tab-pane-->
@@ -199,78 +289,6 @@
                     </tr>
                     <tr>
                       <td>2</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                    </tr>
-                    <tr>
-                      <td>6</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                    </tr>
-                    <tr>
-                      <td>7</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                    </tr>
-                     <tr>
-                      <td>8</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                    </tr>
-                    <tr>
-                      <td>9</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                    </tr>
-                    <tr>
-                      <td>10</td>
                       <td>Table cell</td>
                       <td>Table cell</td>
                       <td>Table cell</td>
@@ -315,20 +333,6 @@
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label>
-                              <input class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any." type="text">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Mobile</h4></label>
-                              <input class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any." type="text">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
                               <label for="email"><h4>Email</h4></label>
                               <input class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." type="email">
                           </div>
@@ -336,7 +340,7 @@
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="email"><h4>Location</h4></label>
+                              <label for="email"><h4>Verify Email</h4></label>
                               <input class="form-control" id="location" placeholder="somewhere" title="enter a location" type="email">
                           </div>
                       </div>
@@ -357,8 +361,8 @@
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                <button class="btn btn-lg btn-success" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+                                <button class="btn btn-lg" type="reset"><i class="fa fa-repeat" aria-hidden="true"></i> Reset</button>
                             </div>
                       </div>
                 </form>

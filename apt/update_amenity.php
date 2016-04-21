@@ -79,6 +79,8 @@ $timestamp = time();
 		style=\"text-align: center; color: #333; background-color: #fff; border-color: #ccc; 
 		text-transform: uppercase; font-size: 14px; font-weight: 400; letter-spacing: 2px; 
 		padding: 10px 16px; font-size: 14px; line-height: 1.3333333; border-radius: 6px;\">
+	<span style=\"display:inline-block; width:15;\"></span>
+	<a href=\"./index.html\" class=\"btn btn-default btn-lg\"><span class=\"network-name\">Homepage</span></a>
 	</div>
 	</div>
 		</form></body></html>";

@@ -151,12 +151,22 @@
                     <li>
                         <a href="index.php#advancedSearch">Search</a>
                     </li>
-                    <li>
-                        <a href="user_profile.php">Profile</a>
-                    </li>
-                    <li>
-                        <a href="Signup.php">Sign Up/Sign In</a>
-                    </li>
+                    <?php
+                    session_start();
+                    if (isset($_SESSION['username'])){
+                    	echo "<li> <a href='user_profile.php'> Profile </a></li>" ;   
+                    	echo "<li> <a href='logout.php'> Log out </a></li>" ;   
+                    } else {
+                    	echo "<li> <a href='Signup.php'> Sign Up/Sign in </a></li>" ;   
+					}
+					?>
+
+
+                    
+                    
+                    
+                    
+                    
                     <li>
                         <a href="index.php#contact">Contact Us</a>
                     </li>

@@ -161,18 +161,6 @@
 					
 					echo "<br/>";
 					
-<<<<<<< HEAD
-						$query = "SELECT DISTINCT * FROM Building NATURAL JOIN Address NATURAL JOIN Apartment INNER JOIN Images 
-						ON Images.purpose_building_id = Building.building_id 
-						WHERE building_id = " . $_GET['id'] . " group by building_id";
-						//echo $query;
-						//$query = "SELECT * FROM Building;";
-						$result = mysqli_query($con, $query);
-						while($row = mysqli_fetch_assoc($result)) {
-							//echo "<div id='address' style='display: none;' value=" . $row['city'] . "," . $row['state'] . ">";
-							echo "<div style='text-align: justify; margin-left: 50px; margin-right: 50px;'>";
-							echo "<div class='row'>";
-=======
 					if($row['img_url'] === null || $row['img_url'] === "" || sizeof($row['img_url']) == 0) {
 						//default image if img URL not set
 						$image = "http://i.imgur.com/OK5gGu4.png";				
@@ -211,8 +199,6 @@
 				while($row = mysqli_fetch_assoc($result)) {
 					echo "<li style='font-weight: 500;'>" . $row['name'] . "</li>";
 				}	
-				//echo "</div>";
->>>>>>> 597fee3f30fcd6784d8947a07db805f8011ecdbd
 				
 				$query = "Select * from Apartment natural join Address natural join Building inner join Images on Images.purpose_building_id = Building.building_id where building_id = " . $_GET['id'] . " AND availability = 1";
 

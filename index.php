@@ -104,7 +104,8 @@
 					state: $("#select-state").val(),
 					city: $("#select-city").val(),
 					beds_list: $("input[name='beds_list[]']").serialize(),
-					baths_list: $("input[name='baths_list[]']").serialize()
+					baths_list: $("input[name='baths_list[]']").serialize(),
+					amenities_list: $("input[name='amenity_input[]']").serialize()
 				},
 				success: function(data){
 					$('#searchResult').html(data);	
@@ -387,7 +388,7 @@
 										$stmt->bind_result($amenity_id, $name);
 										while($stmt->fetch()) {
 												echo "<div class='checkbox'>";
-												echo "<label><input type=\"checkbox\" name=\"amenity_input[]\" value=$amenity_id>";
+												echo "<label><input type=\"checkbox\" name='amenity_input[]' value=$amenity_id>";
 												echo "$name</label></div>";
 										}
 										$stmt->close();

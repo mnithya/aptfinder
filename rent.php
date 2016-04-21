@@ -1,6 +1,16 @@
 <?php
 
-include_once("./library.php");
+session_start();
+
+if ($_SESSION['isAdmin'] == 0) {
+	include_once("./libraryC.php");
+	}
+else if ($_SESSION['isAdmin'] ==1) {
+	include_once("./libraryA.php");
+} else {
+	include_once("./libraryB.php");
+	}
+	
 $con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
 session_start();
 

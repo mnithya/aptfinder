@@ -418,11 +418,11 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-lg-6">
+<!--                 <div class="col-lg-6">
                      <h1>Admins:</h1>
 		    <br>
                     <a href="./apt" class="btn btn-default btn-lg"><i class="fa fa-tasks fa-fw"></i> <span class="network-name">Go to Dashboard</span></a>
-                </div>
+                </div> -->
                 <div class="col-lg-6">
                     <h3>A Final Project for Nada Basit's Database Class (CS4750) at UVA</h3>
 

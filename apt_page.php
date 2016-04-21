@@ -86,12 +86,26 @@
                     <li>
                         <a href="index.php#advancedSearch">Search</a>
                     </li>
-                    <li>
-                        <a href="user_profile.php">Profile</a>
-                    </li>
-                    <li>
-                        <a href="Signup.php">Sign Up/Sign In</a>
-                    </li>
+                   
+                   
+                   <?php
+                    session_start();
+                    if (isset($_SESSION['username'])){
+                    	echo "<li> <a href='user_profile.php'> Profile </a> </li>";
+                    	echo "<li> <a href='logout.php'> Log out</a> </li>";
+                    	
+                    	
+                    	
+                    	
+                    } else {
+                    	echo "<li> <a href='Signup.php'>Sign Up/Sign In</a> </li>";
+                    	}
+                    	
+
+                    ?>
+                   
+                   
+            
                     <li>
                         <a href="index.php#contact">Contact Us</a>
                     </li>
@@ -114,7 +128,7 @@
         <div class="container">	
 			<br><br>
 			<?php 
-			
+				session_start();
 				$query = "SELECT DISTINCT * FROM Building NATURAL JOIN Address NATURAL JOIN Apartment INNER JOIN Images 
 				ON Images.purpose_building_id = Building.building_id 
 				WHERE building_id = " . $_GET['id'];
@@ -205,7 +219,11 @@
 					echo "<br/>Bathrooms: " . $row['num_bathrooms'];
 					echo "</div>";
 					echo "<div align='right' class='col-lg-4 pull-right'>";
+					
+					if (isset($_SESSION['username'])){
+					
 					echo "<br><a href='./rent.php?apt_num=" . $row['apt_num'] . "&id=" . $row['building_id'] . "' class='btn btn-primary btn-lg'>Rent!</a>";
+					}
 					echo "</div>";
 					echo "</div>";
 					echo "</div>";

@@ -1,124 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cs4750kwh5ye.Building>
-	<Building building_id="1">
-		<address_id>10</address_id>
-		<website_url>http://www.equityapartments.com/seattle/lower-queen-anne/harrison-square-apartments#</website_url>
-		<max_occupancy>0</max_occupancy>
-		<walk_score>93</walk_score>
-		<pets_allowed>1</pets_allowed>
-		<rating>4.25</rating>
-		<bldg-company_id>1</bldg-company_id>
-		<name>Harrison Square</name>
-	</Building>
-	<Building building_id="2">
-		<address_id>13</address_id>
-		<website_url>http://www.thepostseattle.com/</website_url>
-		<max_occupancy>0</max_occupancy>
-		<walk_score>99</walk_score>
-		<pets_allowed>0</pets_allowed>
-		<rating>3.7</rating>
-		<bldg-company_id>3</bldg-company_id>
-		<name>The Post</name>
-	</Building>
-	<Building building_id="3">
-		<address_id>1</address_id>
-		<website_url>http://www.avaloncommunities.com/washington/seattle-apartments/ava-belltown/pictures</website_url>
-		<max_occupancy>0</max_occupancy>
-		<walk_score>94</walk_score>
-		<pets_allowed>1</pets_allowed>
-		<rating>3.5</rating>
-		<bldg-company_id>2</bldg-company_id>
-		<name>AVA Belltown</name>
-	</Building>
-	<Building building_id="4">
-		<address_id>2</address_id>
-		<website_url>http://www.arthouseseattle.com/#home</website_url>
-		<max_occupancy>0</max_occupancy>
-		<walk_score>94</walk_score>
-		<pets_allowed>1</pets_allowed>
-		<rating>4.5</rating>
-		<bldg-company_id>3</bldg-company_id>
-		<name>ArtHouse</name>
-	</Building>
-	<Building building_id="5">
-		<address_id>3</address_id>
-		<website_url>http://www.canvasonelliott.com/index.aspx</website_url>
-		<max_occupancy>0</max_occupancy>
-		<walk_score>81</walk_score>
-		<pets_allowed>1</pets_allowed>
-		<rating>3.8</rating>
-		<bldg-company_id>3</bldg-company_id>
-		<name>CANVAS</name>
-	</Building>
-	<Building building_id="6">
-		<address_id>20</address_id>
-		<website_url>http://www.equityapartments.com/new-york-city/midtown-west/hudson-crossing-apartments</website_url>
-		<max_occupancy>0</max_occupancy>
-		<walk_score>99</walk_score>
-		<pets_allowed>1</pets_allowed>
-		<rating>4.2</rating>
-		<bldg-company_id>1</bldg-company_id>
-		<name>Hudson Crossing</name>
-	</Building>
-	<Building building_id="7">
-		<address_id>14</address_id>
-		<website_url>http://www.avaloncommunities.com/new-york/new-york-city-apartments/avalon-clinton</website_url>
-		<max_occupancy>0</max_occupancy>
-		<walk_score>97</walk_score>
-		<pets_allowed>1</pets_allowed>
-		<rating>4.4</rating>
-		<bldg-company_id>2</bldg-company_id>
-		<name>Avalon Clinton</name>
-	</Building>
-	<Building building_id="8">
-		<address_id>15</address_id>
-		<website_url>http://www.stuytown.com/no-fee-apartments-nyc</website_url>
-		<max_occupancy>0</max_occupancy>
-		<walk_score>99</walk_score>
-		<pets_allowed>1</pets_allowed>
-		<rating>4.3</rating>
-		<bldg-company_id>4</bldg-company_id>
-		<name>Stuyvesant Town</name>
-	</Building>
-	<Building building_id="9">
-		<address_id>16</address_id>
-		<website_url>http://www.renaissanceapt.com/</website_url>
-		<max_occupancy>0</max_occupancy>
-		<walk_score>100</walk_score>
-		<pets_allowed>1</pets_allowed>
-		<rating>2.1</rating>
-		<bldg-company_id>5</bldg-company_id>
-		<name>The Renaissance</name>
-	</Building>
-	<Building building_id="10">
-		<address_id>17</address_id>
-		<website_url>http://www.avaloncommunities.com/new-york/new-york-city-apartments/ava-high-line</website_url>
-		<max_occupancy>0</max_occupancy>
-		<walk_score>91</walk_score>
-		<pets_allowed>1</pets_allowed>
-		<rating>4.6</rating>
-		<bldg-company_id>2</bldg-company_id>
-		<name>AVA High Line</name>
-	</Building>
-	<Building building_id="11">
-		<address_id>19</address_id>
-		<website_url>http://www.avaloncommunities.com/new-york/new-york-city-apartments/avalon-morningside-park</website_url>
-		<max_occupancy>0</max_occupancy>
-		<walk_score>98</walk_score>
-		<pets_allowed>1</pets_allowed>
-		<rating>4.5</rating>
-		<bldg-company_id>2</bldg-company_id>
-		<name>Avalon Morningside Park</name>
-	</Building>
-	<Building building_id="12">
-		<address_id>18</address_id>
-		<website_url>http://thewimbledon.com/</website_url>
-		<max_occupancy>0</max_occupancy>
-		<walk_score>100</walk_score>
-		<pets_allowed>1</pets_allowed>
-		<rating>4.5</rating>
-		<bldg-company_id>6</bldg-company_id>
-		<name>The Wimbledon</name>
-	</Building>
-</cs4750kwh5ye.Building>
-xml file generated on 2016-04-12 at 08:48:21
+<cs4750kwh5ye.Amenity>
+	<Amenity amenity_id="1">
+		<name>Pool</name>
+	</Amenity>
+	<Amenity amenity_id="2">
+		<name>Fitness Center</name>
+	</Amenity>
+	<Amenity amenity_id="3">
+		<name>Water View</name>
+	</Amenity>
+	<Amenity amenity_id="4">
+		<name>In Apartment Washer-Dryer</name>
+	</Amenity>
+	<Amenity amenity_id="5">
+		<name>Parking</name>
+	</Amenity>
+	<Amenity amenity_id="6">
+		<name>Balcony</name>
+	</Amenity>
+	<Amenity amenity_id="7">
+		<name>Air Conditioning</name>
+	</Amenity>
+	<Amenity amenity_id="8">
+		<name>Dishwasher</name>
+	</Amenity>
+	<Amenity amenity_id="9">
+		<name>Courtyard</name>
+	</Amenity>
+	<Amenity amenity_id="10">
+		<name>Common Area Kitchen</name>
+	</Amenity>
+	<Amenity amenity_id="11">
+		<name>Printing Center</name>
+	</Amenity>
+	<Amenity amenity_id="12">
+		<name>Common Area WiFi</name>
+	</Amenity>
+	<Amenity amenity_id="13">
+		<name>Rooftop Deck</name>
+	</Amenity>
+	<Amenity amenity_id="14">
+		<name>Guest Suites</name>
+	</Amenity>
+	<Amenity amenity_id="15">
+		<name>Game Room</name>
+	</Amenity>
+	<Amenity amenity_id="16">
+		<name>City View</name>
+	</Amenity>
+	<Amenity amenity_id="17">
+		<name>Refridgerator</name>
+	</Amenity>
+	<Amenity amenity_id="18">
+		<name>Microwave</name>
+	</Amenity>
+	<Amenity amenity_id="19">
+		<name>Heating</name>
+	</Amenity>
+	<Amenity amenity_id="20">
+		<name>Cable</name>
+	</Amenity>
+	<Amenity amenity_id="21">
+		<name>Walk-In Closet</name>
+	</Amenity>
+</cs4750kwh5ye.Amenity>

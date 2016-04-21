@@ -114,14 +114,6 @@
 			});
 		});
 		
-			/*jQuery("#pagination li").live('click',function(e){
-			e.preventDefault();
-				jQuery("#target-content").html('loading...');
-				jQuery("#pagination li").removeClass('active');
-				jQuery(this).addClass('active');
-				var pageNum = this.id;
-				jQuery("#target-content").load("pagination.php?page=" + pageNum);
-			}); */
 	});
 	</script>
 
@@ -151,27 +143,20 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                        <a href="apt/index.html">Admin Tools</a>
+                    </li>
+                    <li>
                         <a href="index.php#about">About</a>
                     </li>
                     <li>
                         <a href="index.php#advancedSearch">Search</a>
                     </li>
-                    
-                    <?php
-                    session_start();
-                    if (isset($_SESSION['username'])){
-                    	echo "<li> <a href='user_profile.php'> Profile </a> </li>";
-                    	echo "<li> <a href='logout.php'> Log out</a> </li>";
-                    	
-                    	
-                    	
-                    	
-                    } else {
-                    	echo "<li> <a href='Signup.php'>Sign Up/Sign In</a> </li>";
-                    	}
-                    	
-
-                    ?>
+                    <li>
+                        <a href="user_profile.php">Profile</a>
+                    </li>
+                    <li>
+                        <a href="Signup.php">Sign Up/Sign In</a>
+                    </li>
                     <li>
                         <a href="index.php#contact">Contact Us</a>
                     </li>
@@ -414,16 +399,8 @@
 
 	<a  name="contact"></a>
     <div class="banner">
-
         <div class="container">
-
             <div class="row">
-<!--                 <div class="col-lg-6">
-                     <h1>Admins:</h1>
-		    <br>
-                    <a href="./apt" class="btn btn-default btn-lg"><i class="fa fa-tasks fa-fw"></i> <span class="network-name">Go to Dashboard</span></a>
-                </div> -->
-                <div class="col-lg-6">
                     <h3>A Final Project for Nada Basit's Database Class (CS4750) at UVA</h3>
 
                      <ul class="list-inline banner-social-buttons">
@@ -437,10 +414,7 @@
                             <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
                         </li>
                     </ul> 
-
-                </div>
             </div>
-
         </div>
         <!-- /.container -->
 

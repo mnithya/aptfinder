@@ -200,7 +200,7 @@
 					echo "<li style='font-weight: 500;'>" . $row['name'] . "</li>";
 				}	
 				
-				$query = "Select * from Apartment natural join Address natural join Building inner join Images on Images.purpose_building_id = Building.building_id where building_id = " . $_GET['id'] . " AND availability = 1";
+				$query = "Select * from Apartment natural join Address natural join Building where building_id = " . $_GET['id'] . " AND availability = 1";
 
 				$result = mysqli_query($con, $query);
 				

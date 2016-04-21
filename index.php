@@ -160,18 +160,17 @@
                     <?php
                     session_start();
                     if (isset($_SESSION['username'])){
-                    	echo "<li> <a href='user_profilie.php'> Profile </a> </li>";
-                    	echo "<li> <a href='index.php?action=logout'> Log out</a> </li>";
+                    	echo "<li> <a href='user_profile.php'> Profile </a> </li>";
+                    	echo "<li> <a href='logout.php'> Log out</a> </li>";
+                    	
+                    	
+                    	
                     	
                     } else {
                     	echo "<li> <a href='Signup.php'>Sign Up/Sign In</a> </li>";
                     	}
                     	
-                    	
-                    if ($_GET['action'] == 'logout') {
-                    	session_destroy();
-                    	}	
-                    	
+
                     ?>
                     <li>
                         <a href="index.php#contact">Contact Us</a>

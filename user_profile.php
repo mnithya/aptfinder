@@ -28,94 +28,90 @@
 </head>
 
 <body>
-    <?php 
-    session_start();
-    include_once("library.php"); // To connect to the database
-    $con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
-    // Check connection
-    if (mysqli_connect_errno())
-    {
-        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    }
+  <?php 
+  session_start();
+  include_once("library.php"); // To connect to the database
+  $con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
+  // Check connection
+  if (mysqli_connect_errno())
+  {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
 
-    $query = "SELECT DISTINCT * FROM User INNER JOIN Images 
-    ON Images.purpose_user_id = User.user_id 
-    WHERE username = " . $_SESSION['username'];
-// KK FIXME
-    $result = mysqli_query($con, $query);
-    if ($result->num_rows != 1) {
+  $query = "SELECT DISTINCT * 
+            FROM User 
+            WHERE User.user_id = `" . $_SESSION['username'] . "`;";
+  // echo $query;
+  $result = mysqli_query($con, $query);
+  while($row = mysqli_fetch_assoc($result)) {
+    echo "<h2 class='section-heading'>" . $row['first_name'];
 
-    }
-    $row = mysqli_fetch_assoc($result); //grab user data
-    ?>
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-        <div class="container topnav">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand topnav" href="index.php#">Home</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                     <?php
-                    if ($_SESSION['isAdmin'] == 1){
-                    	echo "<li> <a href='apt/index.html'> Admin Tools</a></li>" ;  
-                    }
-                    ?>
-                    <li>
-                        <a href="index.php#about">About</a>
-                    </li>
-                    <li>
-                        <a href="index.php#advancedSearch">Search</a>
-                    </li>
-                    
-                    
-                    <li> 
-                    	<a href='logout.php'> Log out </a>
-                    </li>
-                    
-                   
-                    
-                    
-                    
-                    <li>
-                        <a href="index.php#contact">Contact Us</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+  }
 
-	    <!-- Header -->
-    <a name="banner"></a>
-    <div class="intro-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <br/>
-                    <br/>
-                     <h2 style="text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6); font-weight: 625">Apartment Finder</h2>
-                    <hr class="intro-divider">
-                 </div> 
-            </div>   
-        </div>          
-    </div>
-    <!-- /.intro-header -->
+  ?>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+      <div class="container topnav">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand topnav" href="index.php#">Home</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                   <?php
+                  if ($_SESSION['isAdmin'] == 1){
+                  	echo "<li> <a href='apt/index.html'> Admin Tools</a></li>" ;  
+                  }
+                  ?>
+                  <li>
+                      <a href="index.php#about">About</a>
+                  </li>
+                  <li>
+                      <a href="index.php#advancedSearch">Search</a>
+                  </li>
+                  <li> 
+                  	<a href='logout.php'> Log out </a>
+                  </li>                    
+                  <li>
+                      <a href="index.php#contact">Contact Us</a>
+                  </li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+  </nav>
+
+<!-- Header -->
+  <a name="banner"></a>
+  <div class="intro-header">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12">
+                  <br/>
+                  <br/>
+                   <h2 style="text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6); font-weight: 625">Apartment Finder</h2>
+                  <hr class="intro-divider">
+               </div> 
+          </div>   
+      </div>          
+  </div>
+  <!-- /.intro-header -->
+
 <div class="content-section-b">
     <hr>
     <div class="container">
     <div class="row">
         <!-- KK place username -->
-        <div class="col-sm-10"><h1>UserNameGoesHere!!</h1></div>
+        <div class="col-sm-10"><h1><?php echo $_SESSION["username"]; ?></h1></div>
         <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://pre10.deviantart.net/b323/th/pre/i/2012/235/0/2/facebook_profile_image_by_edgarsvensson-d5c7rhk.jpg" style="width:150px; height: auto;"></a></div>
     </div>
     <div class="row">
@@ -156,9 +152,24 @@
         <div class="col-sm-9">
           
           <ul class="nav nav-tabs" id="myTab">
-            <li class="active"><a href="#home" data-toggle="tab"><i class="fa fa-home fa-1x"></i> Home</a></li>
-            <li><a href="#favourites" data-toggle="tab"><i class="fa fa-heart fa-1x"></i> Favourites</a></li>
-            <li><a href="#settings" data-toggle="tab"><i class="fa fa-cog fa-1x"></i> Settings</a></li>
+            <li class="active">
+              <a href="#home" data-toggle="tab">
+                <i class="fa fa-home fa-1x"></i> 
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#favourites" data-toggle="tab">
+                <i class="fa fa-heart fa-1x"></i> 
+                Favourites
+              </a>
+            </li>
+            <li>
+              <a href="#settings" data-toggle="tab">
+                <i class="fa fa-cog fa-1x"></i> 
+                Settings
+              </a>
+            </li>
           </ul>
               
           <div class="tab-content">
@@ -168,18 +179,25 @@
               <div class="table-responsive" id="sec0">
                 <div class="col-md-9">
 <?php
+  session_start();
 // $stmt = $db->stmt_init();
+  echo "made it here!";
+  echo "<br>";
+  $query = "SELECT * FROM User WHERE username = '" . $_SESSION["username"] . "';";
+  echo $query;
+  echo "<br>";
+  $result = mysqli_query($con, $query);
+  $row = mysql_fetch_row($result);
+  $user_id = $row["user_id"];
 
-$username = $_SESSION["username"]
-$query = "SELECT user_id FROM User WHERE username = username";
-$result = mysqli_query($con, $query);
-$user_id = mysql_fetch_row($result)["user_id"];
+  echo "RESULT: " . $row;
+  echo "<br>";
+  if (is_null($user_id)) {
+    echo "Failed to read query...".mysqli_connect_error();
+  }
 
-if (is_null($user_id)) {
-  echo "Failed to read query...".mysqli_connect_error();
-}
-
-echo "user_id: " . $user_id;
+  echo "username: `" . $username . "`";
+  echo "<br>";
 // $query = "SELECT * FROM Rents NATURAL JOIN Building NATURAL JOIN Apartment NATURAL JOIN Address 
 //     INNER JOIN Images ON Images.purpose_building_id = Building.building_id WHERE Rents.`rents-user_id` = " . $user_id;
 // $first = True;
@@ -270,51 +288,22 @@ echo "user_id: " . $user_id;
               
              </div><!--/tab-pane-->
              <div class="tab-pane" id="favourites">
-               
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Label 1</th>
-                      <th>Label 2</th>
-                      <th>Label 3</th>
-                      <th>Label </th>
-                      <th>Label </th>
-                      <th>Label </th>
-                    </tr>
-                  </thead>
-                  <tbody id="items">
-                    <tr>
-                      <td>1</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                      <td>Table cell</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <hr>
-                <div class="row">
-                  <div class="col-md-4 col-md-offset-4 text-center">
-                    <ul class="pagination" id="myPager"></ul>
-                  </div>
-                </div>
-              </div><!--/table-resp-->
-              
-              <hr>
-            
+<?php
+        session_start();
+        $query = "SELECT DISTINCT * FROM Building NATURAL JOIN Address NATURAL JOIN Apartment INNER JOIN Images 
+        ON Images.purpose_building_id = Building.building_id 
+        WHERE building_id = " . $_GET['id'] . " group by building_id";
+        //echo $query;
+        //$query = "SELECT * FROM Building;";
+        $result = mysqli_query($con, $query);
+        while($row = mysqli_fetch_assoc($result)) {
+          //echo "<div id='address' style='display: none;' value=" . $row['city'] . "," . $row['state'] . ">";
+          echo "<div style='text-align: justify; margin-left: 50px; margin-right: 50px;'>";
+          echo "<div class='row'>";
+    
+          echo "<h2 class='section-heading'>" . $row['name'];
+        }
+?>           
                
              </div><!--/tab-pane-->
              <div class="tab-pane" id="settings">

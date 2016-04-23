@@ -28,15 +28,24 @@
 </head>
 
 <body>
-  <?php 
-  session_start();
-  include_once("library.php"); // To connect to the database
-  $con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
-  // Check connection
-  if (mysqli_connect_errno())
-  {
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
+    <?php 
+    session_start();
+   
+
+	if ($_SESSION['isAdmin'] == 0) {
+		include_once("./libraryC.php");
+		}
+	else if ($_SESSION['isAdmin'] ==1) {
+		include_once("./libraryA.php");
+	} else {
+		include_once("./libraryB.php");
+	}
+    $con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
+    // Check connection
+    if (mysqli_connect_errno())
+    {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
 
   $query = "SELECT DISTINCT * 
             FROM User 
@@ -112,6 +121,7 @@
     <div class="row">
         <!-- KK place username -->
         <div class="col-sm-10"><h1><?php echo $_SESSION["username"]; ?></h1></div>
+
         <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://pre10.deviantart.net/b323/th/pre/i/2012/235/0/2/facebook_profile_image_by_edgarsvensson-d5c7rhk.jpg" style="width:150px; height: auto;"></a></div>
     </div>
     <div class="row">

@@ -56,7 +56,19 @@
 
 <body>
 	<?php 
-	include_once("library.php"); // To connect to the database
+	
+	session_start();
+
+	if ($_SESSION['isAdmin'] == 0) {
+		include_once("./libraryC.php");
+		}
+	else if ($_SESSION['isAdmin'] ==1) {
+		include_once("./libraryA.php");
+	} else {
+		include_once("./libraryB.php");
+	}
+	
+	
  	$con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
  	// Check connection
  	if (mysqli_connect_errno())

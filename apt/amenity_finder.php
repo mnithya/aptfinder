@@ -1,5 +1,15 @@
 <?php
-	include_once("./library.php"); // To connect to the database
+	
+	session_start();
+
+	if ($_SESSION['isAdmin'] == 0) {
+		include_once("./libraryC.php");
+		}
+	else if ($_SESSION['isAdmin'] ==1) {
+		include_once("./libraryA.php");
+	} else {
+		include_once("./libraryB.php");
+	}
  	$con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
  	// Check connection
  	if (mysqli_connect_errno())
@@ -35,11 +45,10 @@
 		}
 		
 	}
-	
 	//echo $include;
 	//$sql = "SELECT `ba-building_id`, `name` FROM `Building_Amenity` INNER JOIN `Building` ON `ba-building_id`=`building_id` WHERE `ba-amenity_id` IN " . $include;
 	$sql = "SELECT `name` FROM ((SELECT `ba-building_id`, `name` FROM `Building_Amenity` INNER JOIN `Building` ON `ba-building_id`=`building_id` WHERE `ba-amenity_id` =" . $and;
-	echo $sql;
+	//echo $sql;
 	//echo "<br/>";
 	$result = mysqli_query($con,$sql);
 	while($row = mysqli_fetch_array($result)) {

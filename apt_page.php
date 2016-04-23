@@ -217,7 +217,7 @@
 				$result = mysqli_query($con, $query);
 				
 				if($result->num_rows < 1) {
-					echo "<h4>There are no available apartments.</h4><br/>";
+					echo "<br/><h4>There are no available apartments.</h4><br/>";
 				}
 				else {
 					echo "<h3>Available Apartments: </h3><br/>";

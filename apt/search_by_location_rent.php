@@ -153,7 +153,7 @@ $query = $query . " group by building_id";
 
 $resultQ = mysqli_query($con, $query);
 
-//echo $query;
+echo $query;
 if($stmt->prepare($query) or die("Failed to retrieve apartments")) {
 		//echo $query;
 		 $stmt->execute();

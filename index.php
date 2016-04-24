@@ -26,6 +26,8 @@
     <script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>   
     <script src="js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
 	<script src="http://rawgit.com/botmonster/jquery-bootpag/master/lib/jquery.bootpag.min.js"></script>
+	
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

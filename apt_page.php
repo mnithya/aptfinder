@@ -31,7 +31,22 @@
 	</script>
 
 	<script>
-	var myCenter=new google.maps.LatLng(47.6062,-122.3321);
+	/*function getLatLong(address) {
+		var geocoder = new google.maps.Geocoder();
+
+		geocoder.geocode( { 'address': address}, function(results, status) {
+		
+		if (status == google.maps.GeocoderStatus.OK) {
+			var latitude = results[0].geometry.location.latitude;
+			var longitude = results[0].geometry.location.longitude;
+			alert(latitude);
+			} 
+		}); 
+	}
+	
+		
+	$address = "New York, New York";
+	var myCenter=new google.maps.LatLng($latlong);
 
 	function initialize()
 	{
@@ -50,7 +65,8 @@
 	marker.setMap(map);
 	}
 
-	google.maps.event.addDomListener(window, 'load', initialize);
+	google.maps.event.addDomListener(window, 'load', initialize); */
+ 
 	</script>
 </head>
 
@@ -147,8 +163,16 @@
 				//echo $query;
 				//$query = "SELECT * FROM Building;";
 				$result = mysqli_query($con, $query);
+				$pets_allowed = False;
+				$website = "";				
 				while($row = mysqli_fetch_assoc($result)) {
-					//echo "<div id='address' style='display: none;' value=" . $row['city'] . "," . $row['state'] . ">";
+					$address = $row['street_num'] . " " . $row['street'] . ", " . $row['city'] . "," . $row['state'] . " " . $row['zipcode'];
+					$data_arr = geocode($address);
+ 
+					
+					$pets_allowed = $row['pets_allowed'];
+					$website = $row['website_url'];
+					
 					echo "<div style='text-align: justify; margin-left: 50px; margin-right: 50px;'>";
 					echo "<div class='row'>";
 		
@@ -182,23 +206,92 @@
 					}
 					
 					echo "<div class='col-xs-12 col-md-8'>";
-					echo "<img src='" . $image . "' style='width:700px; height: auto; max-width:100%; max-height:100%;'>";
+					echo "<img src='" . $image . "' style='width:700px; height: auto; max-width:100%; max-height:100%;' id='buildingImage'>";
 					echo "</div>";
 					
 					echo "<div class='col-xs-6 col-md-4'>";
-					echo "<div class='well'>";
+					echo "<div class='well' id='aptinfowell'>";
 					echo "<h3 align='right'>" . "See Apartments Below!" . "</h3>";
 					echo "<p align='right' style='font-size: 26px;'>" . $row['rating'] . "/5<br/><small class='text-muted' style='font-weight: 500;'>Guest Rating</small></p>";
 					echo "<p align='right' style='color: #1aa3ff; font-size: 23px; font-weight: 500;'>Walk Score: " . $row['walk_score'] . "</p>";
 					echo "</div>";
-					echo "<div id='googleMap' style='width:500px;height:145px;max-width:100%; max-height:100%;'></div>";
+					// if able to geocode the address
+					if($data_arr){
+						 
+						$latitude = $data_arr[0];
+						$longitude = $data_arr[1];
+						$formatted_address = $data_arr[2];
+					?>
+ 
+					<!-- Many of geocode and googlemaps code taken from: https://www.codeofaninja.com/2014/06/google-maps-geocoding-example-php.html and other sources -->
+					<!-- google map will be shown here -->
+					<div id="gmap_canvas"></div>
+				 
+					<!-- JavaScript to show google map -->  
+					<script type="text/javascript">
+					var myCenter=new google.maps.LatLng(<?php echo $latitude . "," . $longitude; ?>);
+
+						function initialize()
+						{
+						var mapProp = {
+						  center:myCenter,
+						  zoom:10,
+						  mapTypeId:google.maps.MapTypeId.ROADMAP
+						  };
+						
+						var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+						var marker=new google.maps.Marker({
+						  position:myCenter,
+						  });
+
+						marker.setMap(map);
+						}
+						
+						google.maps.event.addDomListener(window, 'load', initialize);
+						function init_map() {
+							var myOptions = {
+								zoom: 14,
+								center: new google.maps.LatLng(<?php echo $latitude; ?>, <?php echo $longitude; ?>),
+								mapTypeId: google.maps.MapTypeId.ROADMAP
+							};
+							map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
+							marker = new google.maps.Marker({
+								map: map,
+								position: new google.maps.LatLng(<?php echo $latitude; ?>, <?php echo $longitude; ?>)
+							});
+							infowindow = new google.maps.InfoWindow({
+								content: "<?php echo $formatted_address; ?>"
+							});
+							google.maps.event.addListener(marker, "click", function () {
+								infowindow.open(map, marker);
+							});
+							infowindow.open(map, marker);
+						}
+						google.maps.event.addDomListener(window, 'load', init_map);
+						
+						
+					</script>
+				 
+					<?php
+				 
+					// if unable to geocode the address
+					}else{
+						echo "No map found.";
+					}
+				
+				?>
+				<?php	
+					
+					echo "<div id='googleMap' style='width:500px;height:200px;max-width:100%; max-height:100%;'></div>";
+					
 					echo "</div>";
 					echo "</div>";
 					
 
 				}
-		
-			
+				echo "<hr>";
+				echo "<div class='row'>";
 				$query = "SELECT Amenity.name
 						FROM Amenity
 						INNER JOIN Building_Amenity ON Amenity.amenity_id = Building_Amenity.`ba-amenity_id`
@@ -207,11 +300,31 @@
 				$result = mysqli_query($con, $query);
 				echo "<div class='row'>";
 				echo "</div>";
+				
+				echo "<div class='row'>";
+				echo "<div class='col-lg-4'>";
 				echo "<br><h3>Amenities </h3>";
 				while($row = mysqli_fetch_assoc($result)) {
 					echo "<li style='font-weight: 500;'>" . $row['name'] . "</li>";
 				}	
+				echo "</div>";
 				
+				echo "<div class='col-lg-4 pull-right'><br/><br/>";
+				echo "<div class='panel panel-default'><div class='panel-body'>";
+				echo "<a href='" . $website . "'>Go to website</a><br/>";
+				if($pets_allowed) {
+					echo "<p>Selected Pets Allowed. See website for details</p>";
+				} else {
+					echo "<p>No Pets Allowed</p>";
+				}
+				echo "</div></div>";
+				echo "</div>";
+				echo "</div>";
+				echo "</div>";
+				
+				echo "<hr>";
+				
+				echo "<div class='row'>";
 				$query = "Select * from Apartment natural join Address natural join Building where building_id = " . $_GET['id'] . " AND availability = 1";
 
 				$result = mysqli_query($con, $query);
@@ -239,6 +352,60 @@
 					echo "</div>";
 					echo "</div>";
 				}
+				echo "</div>";
+			?>
+			
+			<?php
+ 
+				// function to geocode address, it will return false if unable to geocode address
+				function geocode($address){
+				 
+					// url encode the address
+					$address = urlencode($address);
+					 
+					// google map geocode api url
+					$url = "http://maps.google.com/maps/api/geocode/json?address={$address}";
+				 
+					// get the json response
+					$resp_json = file_get_contents($url);
+					 
+					// decode the json
+					$resp = json_decode($resp_json, true);
+				 
+					// response status will be 'OK', if able to geocode given address 
+					
+					if($resp['status']=='OK'){
+				 
+						// get the important data
+						$lati = $resp['results'][0]['geometry']['location']['lat'];
+						$longi = $resp['results'][0]['geometry']['location']['lng'];
+						$formatted_address = $resp['results'][0]['formatted_address'];
+						
+						 
+						// verify if data is complete
+						if($lati && $longi && $formatted_address){
+						 
+							// put the data in the array
+							$data_arr = array();            
+							 
+							array_push(
+								$data_arr, 
+									$lati, 
+									$longi, 
+									$formatted_address
+								);
+							 
+							return $data_arr;
+							 
+						}else{
+							return false;
+						}
+						 
+					}else{
+						return false;
+					}
+				}
+			
 			?>
         </div>
         <!-- /.container -->
@@ -274,6 +441,14 @@
         </div>
     </footer>
 
+		<script>
+	 var img = document.getElementById('buildingImage');
+						var imgheight = $('#buildingImage').height();
+						var wellheight = $('#aptinfowell').height();
+						var totalheight = imgheight - wellheight - 58;
+						var imgheightstr = totalheight + "px";
+						document.getElementById('googleMap').style.height=imgheightstr;
+						</script>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 

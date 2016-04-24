@@ -1,10 +1,13 @@
 <?php
+	session_start();
+
 	require "dbutil.php";
 	$db = DbUtil::loginConnection();
 	$name = $_POST['bldg_name'];
 	$url = $_POST['bldg_url'];
 	$walk_score = $_POST['bldg_walk_score'];
 	$rating = $_POST['bldg_rating'];
+	$image = $_POST['bldg_img_url'];
 	$pets = $_POST['bldg_pets'];
 	$addr_id = NULL;
 	$cmpy = NULL;
@@ -57,6 +60,17 @@
 			$stmt->close();
 			//echo $_POST['name'] . " added on $day at $time";
 	}
+	
+	$bldg_id = $db->insert_id;
+	
+	$stmt = $db->stmt_init();
+	if($stmt->prepare("INSERT INTO Images(img_url, purpose_building_id) VALUES (?, ?)") or die(header('Location: ./error.html')))
+	{
+		$stmt->bind_param(ss, $image, $bldg_id);
+		$stmt->execute();
+		$stmt->close();
+	}
+	
 	$db->close();
 	header('Location: ./index.html');
 ?>

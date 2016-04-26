@@ -3,18 +3,18 @@
 	session_start();
 
 	if ($_SESSION['isAdmin'] == 0) {
-		include_once("./libraryC.php");
+		include_once("../libraryC.php");
 		}
 	else if ($_SESSION['isAdmin'] ==1) {
-		include_once("./libraryA.php");
+		include_once("../libraryA.php");
 	} else {
-		include_once("./libraryB.php");
+		include_once("../libraryB.php");
 	}
  	$con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
  	// Check connection
  	if (mysqli_connect_errno())
  	{
- 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+ 		echo "Sorry - this page is not working right now!";
  	}
 	
 	$string = $_GET['amenities'];

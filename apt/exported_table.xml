@@ -1,76 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<cs4750kwh5ye.Amenity>
-	<Amenity amenity_id="1">
-		<name>Pool</name>
-	</Amenity>
-	<Amenity amenity_id="2">
-		<name>Fitness Center</name>
-	</Amenity>
-	<Amenity amenity_id="3">
-		<name>Water View</name>
-	</Amenity>
-	<Amenity amenity_id="4">
-		<name>In Apartment Washer-Dryer</name>
-	</Amenity>
-	<Amenity amenity_id="5">
-		<name>Parking</name>
-	</Amenity>
-	<Amenity amenity_id="6">
-		<name>Balcony</name>
-	</Amenity>
-	<Amenity amenity_id="7">
-		<name>Air Conditioning</name>
-	</Amenity>
-	<Amenity amenity_id="8">
-		<name>Dishwasher</name>
-	</Amenity>
-	<Amenity amenity_id="9">
-		<name>Courtyard</name>
-	</Amenity>
-	<Amenity amenity_id="10">
-		<name>Common Area Kitchen</name>
-	</Amenity>
-	<Amenity amenity_id="11">
-		<name>Printing Center</name>
-	</Amenity>
-	<Amenity amenity_id="12">
-		<name>Common Area WiFi</name>
-	</Amenity>
-	<Amenity amenity_id="13">
-		<name>Rooftop Deck</name>
-	</Amenity>
-	<Amenity amenity_id="14">
-		<name>Guest Suites</name>
-	</Amenity>
-	<Amenity amenity_id="15">
-		<name>Game Room</name>
-	</Amenity>
-	<Amenity amenity_id="16">
-		<name>City View</name>
-	</Amenity>
-	<Amenity amenity_id="17">
-		<name>Refridgerator</name>
-	</Amenity>
-	<Amenity amenity_id="18">
-		<name>Microwave</name>
-	</Amenity>
-	<Amenity amenity_id="19">
-		<name>Heating</name>
-	</Amenity>
-	<Amenity amenity_id="20">
-		<name>Cable</name>
-	</Amenity>
-	<Amenity amenity_id="21">
-		<name>Walk-In Closet</name>
-	</Amenity>
-</cs4750kwh5ye.Amenity>
-=======
 <cs4750kwh5ye.Apt_Availability>
 	<Apt_Availability bldg_id="1">
 		<bldg_name>Harrison Square</bldg_name>
 		<apt_totals>1</apt_totals>
-		<vacancy>0</vacancy>
+		<vacancy>1</vacancy>
 	</Apt_Availability>
 	<Apt_Availability bldg_id="2">
 		<bldg_name>The Post</bldg_name>
@@ -80,12 +13,12 @@
 	<Apt_Availability bldg_id="3">
 		<bldg_name>AVA Belltown</bldg_name>
 		<apt_totals>1</apt_totals>
-		<vacancy>1</vacancy>
+		<vacancy>0</vacancy>
 	</Apt_Availability>
 	<Apt_Availability bldg_id="4">
 		<bldg_name>ArtHouse</bldg_name>
 		<apt_totals>2</apt_totals>
-		<vacancy>2</vacancy>
+		<vacancy>1</vacancy>
 	</Apt_Availability>
 	<Apt_Availability bldg_id="5">
 		<bldg_name>CANVAS</bldg_name>
@@ -94,8 +27,8 @@
 	</Apt_Availability>
 	<Apt_Availability bldg_id="6">
 		<bldg_name>Hudson Crossing</bldg_name>
-		<apt_totals>3</apt_totals>
-		<vacancy>3</vacancy>
+		<apt_totals>4</apt_totals>
+		<vacancy>4</vacancy>
 	</Apt_Availability>
 	<Apt_Availability bldg_id="7">
 		<bldg_name>Avalon Clinton</bldg_name>
@@ -112,5 +45,19 @@
 		<apt_totals>8</apt_totals>
 		<vacancy>8</vacancy>
 	</Apt_Availability>
+	<Apt_Availability bldg_id="24">
+		<bldg_name>Audrey at Belltown</bldg_name>
+		<apt_totals>1</apt_totals>
+		<vacancy>1</vacancy>
+	</Apt_Availability>
+	<Apt_Availability bldg_id="25">
+		<bldg_name>Pinnacle Condominium</bldg_name>
+		<apt_totals>1</apt_totals>
+		<vacancy>1</vacancy>
+	</Apt_Availability>
+	<Apt_Availability bldg_id="28">
+		<bldg_name>Sidney Belltown</bldg_name>
+		<apt_totals>1</apt_totals>
+		<vacancy>1</vacancy>
+	</Apt_Availability>
 </cs4750kwh5ye.Apt_Availability>
->>>>>>> ad8b773526d0326b9879bf986b76f132d463ca22

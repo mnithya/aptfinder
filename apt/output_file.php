@@ -12,17 +12,19 @@ ini_set('display_errors', 1);
 	session_start();
 
 	if ($_SESSION['isAdmin'] == 0) {
-		include_once("./libraryC.php");
+		include_once("../libraryC.php");
 		}
 	else if ($_SESSION['isAdmin'] ==1) {
-		include_once("./libraryA.php");
+		include_once("../libraryA.php");
 	} else {
-		include_once("./libraryB.php");
+		include_once("../libraryB.php");
 	}
+
  	$con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE); 
  	// Check connection
  	if (mysqli_connect_errno()) {
  		header('Location: ./error.html');
+		//echo "error connection death";
  	}
 
 	$stmt = $db->stmt_init();
@@ -36,11 +38,11 @@ ini_set('display_errors', 1);
 	$output_file = "exported_table.xml";
 	// http://stackoverflow.com/questions/13760860/how-to-create-xml-files-via-php-and-mysql
 	// http://stackoverflow.com/questions/5648420/get-all-columns-from-all-mysql-tables
-	$f_handle = fopen($output_file, 'w+') or die("Could not make file");
+	$f_handle = fopen($output_file, 'w+') or die(header('Location: ./error.html'));
 	//need to make a 'fatal error' html page or some sort of javascript alert
 	
 	$stmt = $db->stmt_init();
-	if($stmt->prepare("SELECT column_name FROM information_schema.columns WHERE table_schema= 'cs4750kwh5ye' AND table_name='". $_POST['export'] . "'") or die("That is really unfortunate"))
+	if($stmt->prepare("SELECT column_name FROM information_schema.columns WHERE table_schema= 'cs4750kwh5ye' AND table_name='". $_POST['export'] . "'") or die(header('Location: ./error.html')))
 	{
 		$stmt->execute();
 		$stmt->bind_result($col);
@@ -54,7 +56,6 @@ ini_set('display_errors', 1);
 
 	$output_text = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n";
 	$output_text .= "<cs4750kwh5ye.".$_POST['export'].">\r\n";
-	//$_POST['export'] TODO
 
 	$query = "SELECT * FROM ". $_POST['export'];
 	$result = mysqli_query($con, $query);
@@ -70,7 +71,6 @@ ini_set('display_errors', 1);
 	
 
 	$output_text .= "</cs4750kwh5ye.". $_POST['export'] .">\r\n";
-	//$output_text .= "xml file generated on ". $day ." at ". $time;
 	$db->close();
 	mysqli_close($con);
 

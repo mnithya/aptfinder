@@ -42,7 +42,7 @@ $timestamp = time();
 		$stmt->execute();
 		$stmt->bind_result($name, $building_id);
 		while($stmt->fetch()) {
-			echo "<input type=\"radio\" name=\"bldg\" value=$building_id>";
+			echo "<input type=\"radio\" name=\"bldg\" value=$building_id required>";
 			echo "	$name";
 			echo "</br>";
 		}

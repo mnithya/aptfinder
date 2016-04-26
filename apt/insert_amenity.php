@@ -26,7 +26,7 @@ else
 if(!empty($_POST['amenity']) && !$error) {
 	foreach($_POST['amenity'] as $amenity)
 	{
-		if($stmt->prepare("INSERT INTO Building_Amenity(`ba-amenity_id`, `ba-building_id`) VALUES (?, ?)") or die("Error: Insertion not currently possible"))
+		if($stmt->prepare("INSERT INTO Building_Amenity(`ba-amenity_id`, `ba-building_id`) VALUES (?, ?)") or die(header('Location: ./error.html')))
 		{
 			$stmt->bind_param(ss, $amenity, $bldg);
 			$stmt->execute();

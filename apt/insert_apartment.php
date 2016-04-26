@@ -31,7 +31,7 @@ if(isset($_POST['apt_beds']) && (int)$_POST['apt_beds'] > 0)
 }
 else 
 {
-$error = True;
+	header('Location: ./error.html');
 }
 
 if(isset($_POST['apt_baths']) && (int)$_POST['apt_baths'] > 0)
@@ -40,7 +40,7 @@ if(isset($_POST['apt_baths']) && (int)$_POST['apt_baths'] > 0)
 }
 else 
 {
-$error = True;
+	header('Location: ./error.html');
 }
 
 
@@ -55,7 +55,7 @@ if (array_key_exists('apt_bldg_id', $_POST))
 }
 else
 {
-	$error = True;
+	header('Location: ./error.html');
 }
 
 if(!empty($_POST['apt_num']) && (int)$_POST['apt_num'] > 0)
@@ -64,7 +64,7 @@ if(!empty($_POST['apt_num']) && (int)$_POST['apt_num'] > 0)
 }
 else
 {
-	$error = True;
+	header('Location: ./error.html');
 }
 
 if(!empty($_POST['apt_rent']) && (float)$_POST['apt_rent'] > (float)0)
@@ -73,14 +73,14 @@ if(!empty($_POST['apt_rent']) && (float)$_POST['apt_rent'] > (float)0)
 }
 else
 {
-	$error = True;
+	header('Location: ./error.html');
 }
 
 /* INSERT INTO `Apartment`(`building_id`, `apt_num`, `availability`, `num_bathrooms`, `num_bedrooms`, `rent`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])*/
 
 
 if(!$error && $stmt->prepare("INSERT INTO Apartment(building_id, apt_num, availability, num_bathrooms, num_bedrooms, rent) VALUES
-		(?, ?, ?, ?, ?, ?)") or die("Error: You were not able to insert into the database, Sorry!"))
+		(?, ?, ?, ?, ?, ?)") or die(header('Location: ./error.html')))
 	{
 			$stmt->bind_param(ssssss, $bldg_id, $apt_num, $availability, $baths, $beds, $rent);
 			$stmt->execute();

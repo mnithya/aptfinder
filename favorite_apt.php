@@ -31,8 +31,9 @@ $num = $result->num_rows;
 while($row = mysqli_fetch_assoc($result)) {
 	$userid = $row['user_id'];
 }
+// $query = "insert into Rents (`rents-apt_num`, `rents-building_id`, `rents-user_id`) values($apt_num, $building_id, $userid)";
 
-$query = "insert into Rents (`rents-apt_num`, `rents-building_id`, `rents-user_id`) values('$apt_num', '$building_id', '$userid')";
+$query = "INSERT INTO Favorites (`fav-apt_id`, `fav-building_id`, `fav-user_id`) VALUES('$apt_num', '$building_id', '$userid')";
 
 $result = mysqli_query($con, $query);
 echo $query;

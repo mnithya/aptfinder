@@ -27,11 +27,23 @@ if(!empty($_GET['searchLoc'])) {
 	array_push($conditions, "(Address.city LIKE '$location' OR Address.state LIKE '$location' OR Address.zipcode LIKE '$location')");
 }
 
-if(isset($_GET['minrent'])) {
+if(isset($_GET['minrent']) || isset($_GET['minrent_input'])) {
+	if(empty($_GET['minrent']) || empty($_GET['minrent_input'])) {
+		$min_rent = 0;
+	}
+	if(!empty($_GET['minrent_input'])) {
+		$min_rent = $_GET['minrent_input'];
+	}
 	array_push($conditions, "Apartment.rent >= " . $min_rent);
 } 
 
-if(isset($_GET['maxrent'])) {
+if(isset($_GET['maxrent']) || isset($_GET['maxrent_input'])) {
+	if(empty($_GET['maxrent']) || empty($_GET['maxrent_input'])) {
+		$max_rent = 1000000;
+	}
+	if(!empty($_GET['maxrent_input'])) {
+		$max_rent = $_GET['maxrent_input'];
+	}
 	array_push($conditions, "Apartment.rent <= " . $max_rent);
 }
 
@@ -83,40 +95,38 @@ if(isset($_GET['baths_list']) && !empty($_GET['baths_list'])) {
 	array_push($conditions, $baths_string);
 }
 
-
 if(isset($_GET['amenities_list']) && !empty($_GET['amenities_list'])) {
-	echo "???";
 	$string = $_GET['amenities_list'];
 	//echo $string;
-	print_r($_GET['amenities_list']);
+	//print_r($_GET['amenities_list']);
 	$include = "(";
 	$and = "";
-	$elements = explode("amenities_list%5B%5D=", $string);
-	//echo $elements;
+	$elements = explode("amenity_input%5B%5D=", $string);
+	//echo "<br>";
 	$amen = array();
 	for($i = 1; $i < count($elements); $i++) 
 	{	
 		array_push($amen, str_replace('&', '',$elements[$i]));
 		
 	}
-	//print_r($amen);
+	
 	for($i = 0; $i < count($amen); $i++) 
 	{	
 		if($i < count($amen)-1)
 		{
 			$include = $include . "'" . $amen[$i] . "', ";
-			$and = $and . "'" . $amen[$i] . "') AS T". $i . " NATURAL JOIN (SELECT `ba-building_id`, `name` FROM `Building_Amenity` INNER JOIN `Building` ON `ba-building_id`=`building_id` WHERE `ba-amenity_id` =";
+			$and = $and . "'" . $amen[$i] . "')". " AND `name` IN (SELECT `name` FROM `Building_Amenity` INNER JOIN `Building` ON `ba-building_id`=`building_id` WHERE `ba-amenity_id` =";
 		}
 		else 
 		{
 			$include = $include . "'" . $amen[$i] . "')";
-			$and = $and . "'" . $amen[$i] . "') AS T". $i. ")";
+			$and = $and . "'" . $amen[$i] . "')";
 
 		}
-		
+		 
 	}
 	
-	$sql = "`name` IN ((SELECT `ba-building_id`, `name` FROM `Building_Amenity` INNER JOIN `Building` ON `ba-building_id`=`building_id` WHERE `ba-amenity_id` =" . $and;
+	$sql = "`name` IN (SELECT `name` FROM `Building_Amenity` INNER JOIN `Building` ON `ba-building_id`=`building_id` WHERE `ba-amenity_id` =" . $and;
 	array_push($conditions, $sql);
 }
 
@@ -143,7 +153,7 @@ $query = $query . " group by building_id";
 
 $resultQ = mysqli_query($con, $query);
 
-echo $query;
+//echo $query;
 if($stmt->prepare($query) or die("Failed to retrieve apartments")) {
 		//echo $query;
 		 $stmt->execute();

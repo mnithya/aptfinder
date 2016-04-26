@@ -26,6 +26,8 @@
     <script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>   
     <script src="js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
 	<script src="http://rawgit.com/botmonster/jquery-bootpag/master/lib/jquery.bootpag.min.js"></script>
+	
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -69,7 +71,10 @@
 					minrent: $("#minrent" ).val(),
 					maxrent: $("#maxrent").val(),
 					state: $("#select-state").val(),
-					city: $("#select-city").val()
+					city: $("#select-city").val(),
+					beds_list: $("input[name='beds_list[]']").serialize(),
+					baths_list: $("input[name='baths_list[]']").serialize(),
+					amenities_list: $("input[name='amenity_input[]']").serialize()
 				},
 				success: function(data){
 					$('#searchResult').html(data);	
@@ -77,24 +82,7 @@
 				error: function (data) { console.log(data); }
 			});
 		});
-		$( "#select-city").change(function() {
-			$.ajax({
-				url: 'apt/search_by_location_rent.php', 
-				data: {
-					searchLoc: $("#location").val(),
-					minrent: $("#minrent" ).val(),
-					maxrent: $("#maxrent").val(),
-					state: $("#select-state").val(),
-					city: $("#select-city").val()
-				},
-				success: function(data){
-					$('#searchResult').html(data);	
-				},
-				//error:function(exception){alert('Exeption:'+exception);}
-				error: function (data) { console.log(data); }
-			});
-		});
-		$( "input[type=checkbox]").change(function() {
+		$( "#select-city").change(function() { 
 			$.ajax({
 				url: 'apt/search_by_location_rent.php', 
 				data: {
@@ -114,7 +102,50 @@
 				error: function (data) { console.log(data); }
 			});
 		});
+		$( "input[type=checkbox]").change(function() {
+			$.ajax({
+				url: 'apt/search_by_location_rent.php', 
+				data: {
+					searchLoc: $("#location").val(),
+					minrent: $("#minrent" ).val(),
+					maxrent: $("#maxrent").val(),
+					state: $("#select-state").val(),
+					city: $("#select-city").val(),
+					minrent_input: $("#minrent_input" ).val(),
+					maxrent_input: $("#maxrent_input").val(),
+					beds_list: $("input[name='beds_list[]']").serialize(),
+					baths_list: $("input[name='baths_list[]']").serialize(),
+					amenities_list: $("input[name='amenity_input[]']").serialize()
+				},
+				success: function(data){
+					$('#searchResult').html(data);	
+				},
+				//error:function(exception){alert('Exeption:'+exception);}
+				error: function (data) { console.log(data); }
+			});
+		});
 		
+		$("#rent_range").click(function() {
+		
+			$.ajax({
+				url: 'apt/search_by_location_rent.php', 
+				data: {
+					searchLoc: $("#location").val(),
+					state: $("#select-state").val(),
+					city: $("#select-city").val(),
+					minrent_input: $("#minrent_input" ).val(),
+					maxrent_input: $("#maxrent_input").val(),
+					beds_list: $("input[name='beds_list[]']").serialize(),
+					baths_list: $("input[name='baths_list[]']").serialize(),
+					amenities_list: $("input[name='amenity_input[]']").serialize()
+				},
+				success: function(data){
+					$('#searchResult').html(data);	
+				},
+				//error:function(exception){alert('Exeption:'+exception);}
+				error: function (data) { console.log(data); }
+			});
+		});
 	});
 	</script>
 

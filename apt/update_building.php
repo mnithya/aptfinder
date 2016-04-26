@@ -35,6 +35,7 @@ $timestamp = time();
 							<input type=\"text\" name=\"bldg_url\" placeholder='Website' required> <br/><br/>
 							<input type=\"text\" name=\"bldg_walk_score\" placeholder='Walk Score' required> <br/><br/>
 							<input type=\"text\" name=\"bldg_rating\" placeholder='Rating' required> <br/><br/>
+							<input type=\"text\" name=\"bldg_img_url\" placeholder='Image URL' required> <br/><br/>
 							Pets Allowed: <select name=\"bldg_pets\" required>
 								<option value=\"1\">Yes</option>
 								<option value=\"0\">No</option>

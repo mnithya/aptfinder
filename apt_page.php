@@ -115,25 +115,15 @@
                         <a href="index.php#advancedSearch">Search</a>
                     </li>
                    
-                   
                    <?php
                     session_start();
                     if (isset($_SESSION['username'])){
                     	echo "<li> <a href='user_profile.php'> Profile </a> </li>";
                     	echo "<li> <a href='logout.php'> Log out</a> </li>";
-                    	
-                    	
-                    	
-                    	
                     } else {
                     	echo "<li> <a href='Signup.php'>Sign Up/Sign In</a> </li>";
-                    	}
-                    	
-
+                    }
                     ?>
-                   
-                   
-            
                     <li>
                         <a href="index.php#contact">Contact Us</a>
                     </li>
@@ -347,6 +337,8 @@
 					if (isset($_SESSION['username'])){
 					
 					echo "<br><a href='./rent.php?apt_num=" . $row['apt_num'] . "&id=" . $row['building_id'] . "' class='btn btn-primary btn-lg'>Rent!</a>";
+					echo "<br>";
+					echo "<br><a href='./favorite_apt.php?apt_num=" . $row['apt_num'] . "&id=" . $row['building_id'] . "' class='btn btn-primary btn-lg'>Favorite</a>";
 					}
 					echo "</div>";
 					echo "</div>";

@@ -35,16 +35,22 @@ while($row = mysqli_fetch_assoc($result)) {
 $query = "insert into Rents (`rents-apt_num`, `rents-building_id`, `rents-user_id`) values('$apt_num', '$building_id', '$userid')";
 
 $result = mysqli_query($con, $query);
-echo $query;
-echo $result->num_rows;
+//echo $query;
+//echo $result->num_rows;
 
 $newURL = "./apt_page?id=$building_id";
 
-echo $username;
-echo $userid;
-//header('Location: '.$newURL);
+//echo $username;
+//echo $userid;
 
 mysqli_close($db_connection);
 
+echo '<script language="javascript">';
+echo 'alert("Apartment Rented!")';
+echo '</script>';
+
+header('Location: '.$newURL);
+
+exit;
 
 ?>

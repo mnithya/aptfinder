@@ -178,7 +178,7 @@
                     
                     <?php
                     if ($_SESSION['isAdmin'] == 1){
-                    	echo "<li> <a href='apt/index.html'> Admin Tools</a></li>" ;  
+                    	echo "<li> <a href='apt/index.php'> Admin Tools</a></li>" ;  
                     }
                     ?>
                     <li>
@@ -448,18 +448,6 @@
         <div class="container">
             <div class="row">
                     <h3>A Final Project for Nada Basit's Database Class (CS4750) at UVA</h3>
-
-                     <ul class="list-inline banner-social-buttons">
-                        <li>
-                            <a href="#" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
-                        </li>
-                    </ul> 
             </div>
         </div>
         <!-- /.container -->

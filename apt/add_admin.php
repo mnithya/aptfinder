@@ -19,6 +19,6 @@ $stmt = $db->stmt_init();
 
 $stmt->close();
 $db->close();
-header('Location: ./index.html');
+header('Location: ./index.php');
 	
 ?>

@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+
+if (!isset($_SESSION['username'])){
+		echo "<script> alert('You do not have permission to enter this page');";
+		echo "</script>";
+		echo "<script>location.href='../index.php'</script>";
+		exit();
+ 	}
+
+
+
+?>
+
 
 <head>
 

@@ -1,4 +1,19 @@
 <?php
+
+
+session_start();
+
+if (!isset($_SESSION['username'])){
+		echo "<script> alert('You do not have permission to enter this page');";
+		echo "</script>";
+		echo "<script>location.href='../index.php'</script>";
+		exit();
+ 	}
+
+
+
+
+
 require "dbutil.php";
 $db = DbUtil::loginConnection();
 date_default_timezone_set('America/New_York');

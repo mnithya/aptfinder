@@ -410,7 +410,7 @@
 									<label for="maxrent_input" style="margin-left: 2px;">  to $</label>
 									<input type="number" class="rent-filter" id="maxrent_input">
 								  </div>
-								  <button type="submit" class="btn btn-default btn-rent" id="rent_range">Go</button>
+								  <a href="#advancedSearch" class="btn btn-default btn-rent" id="rent_range">Go</a>
 								</form>
 						  </li>
 						  <li style="margin-top: 10px;">

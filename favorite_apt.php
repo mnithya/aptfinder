@@ -43,9 +43,9 @@ $newURL = "./apt_page?id=$building_id";
 
 echo $username;
 echo $userid;
-//header('Location: '.$newURL);
+
 
 mysqli_close($db_connection);
-
+header('Location: '.$newURL);
 
 ?>

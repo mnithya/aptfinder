@@ -329,6 +329,7 @@
 					echo "<br><br><div class='panel panel-default'><div class='panel-body'>";
 					echo "<div class='col-lg-4'>";
 					echo "<p><div style='font-size: 20px;'>Apt #: " . $row['apt_num'] . "</div>";
+					echo "<br/><p>Rent: $" . number_format($row['rent']);
 					echo "<br/><p>Bedrooms: " . $row['num_bedrooms'];
 					echo "<br/>Bathrooms: " . $row['num_bathrooms'];
 					echo "</div>";

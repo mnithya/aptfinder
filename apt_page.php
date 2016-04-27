@@ -339,7 +339,7 @@
 					
 					echo "<br><a href='./rent.php?apt_num=" . $row['apt_num'] . "&id=" . $row['building_id'] . "' class='btn btn-primary btn-lg'>Rent!</a>";
 					echo "<br>";
-					echo "<br><a href='./favorite_apt.php?apt_num=" . $row['apt_num'] . "&id=" . $row['building_id'] . "' class='btn btn-primary btn-lg'>Favorite</a>";
+					echo "<br><a href='./favorite_apt.php?apt_num=" . $row['apt_num'] . "&id=" . $row['building_id'] . "' class='btn btn-warning btn-lg'>Favorite</a>";
 					}
 					echo "</div>";
 					echo "</div>";

@@ -178,7 +178,7 @@
                     
                     <?php
                     if ($_SESSION['isAdmin'] == 1){
-                    	echo "<li> <a href='apt/index.html'> Admin Tools</a></li>" ;  
+                    	echo "<li> <a href='apt/index.php'> Admin Tools</a></li>" ;  
                     }
                     ?>
                     <li>

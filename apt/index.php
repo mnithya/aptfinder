@@ -146,7 +146,7 @@ if (!isset($_SESSION['username'])){
                 <div class="col-md-8">
                     <img class="img-responsive" style="border-radius: 4px;" src="images/databases_group.jpg" alt="">
                     <br /> 
-                    <h3 class='text-muted'>Manage your ApartmentFinder Web application:</h3>
+                    <h3 class='text-muted'>Manage your Apartment Finder Web application:</h3>
 			<ul> 
 			<li> Insert apartment and building information</li>
 			<li> Manage users</li>

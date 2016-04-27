@@ -53,6 +53,7 @@
   
 <body>
 	<?php
+	session_start();
 	require "apt/dbutil.php";
     $db = DbUtil::loginConnection();
 	date_default_timezone_set('America/New_York');
@@ -83,9 +84,7 @@
 	                if (isset($_SESSION['username'])){
 	                	echo "<li> <a href='user_profile.php'> Profile </a> </li>";
 	                	echo "<li> <a href='logout.php'> Log out</a> </li>";
-	                } else {
-	                	echo "<li> <a href='Signup.php'>Sign Up/Sign In</a> </li>";
-	                }
+	                } 
                   ?>
                     
                     <li>
@@ -333,6 +332,7 @@
 					$row = $result->fetch_array();
 					if (password_verify($pw, stripslashes($row['pword']))) {
 							$_SESSION['username'] = $un;
+							
 							
 							
 							if ($Admin == 0){
